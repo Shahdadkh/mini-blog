@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  direction: rtl;
+}
+
+.fontcolor1 {
+  color: #696969;
+}
