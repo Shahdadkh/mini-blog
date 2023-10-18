@@ -4,7 +4,7 @@ import Link from "next/link";
 const MainHeader = () => {
   const menu = [
     { name: "خانه", href: "/" },
-    { name: "درباره ما", href: "/" },
+    { name: "درباره ما", href: "/about-us" },
   ];
   return (
     <div className="border border-transparent bg-white w-11/12 h-14 mx-auto">
