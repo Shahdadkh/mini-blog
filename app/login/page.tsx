@@ -1,5 +1,7 @@
 "use client";
 import { Formik, Form, Field } from "formik";
+import { HiEye, HiEyeOff } from "react-icons/hi";
+import { useState } from "react";
 
 interface typeValue {
   username: string;
@@ -7,6 +9,7 @@ interface typeValue {
 }
 
 const login = () => {
+  const [show, setShow] = useState(false);
   const initialValues: typeValue = {
     username: "",
     password: "",
@@ -27,12 +30,21 @@ const login = () => {
               className="w-4/6 py-4 rounded-full shadow-custom-shadow font-medium mx-auto mt-4 pr-6 outline-none fontcolor1 block"
               placeholder="نام کاربری"
             />
-            <Field
-              type="password"
-              name="password"
-              className="w-4/6 py-4 rounded-full shadow-custom-shadow font-medium mx-auto mt-4 pr-6 outline-none fontcolor1 block"
-              placeholder="رمز عبور"
-            />
+            <div className="relative border border-transparent">
+              <Field
+                type={show ? "text" : "password"}
+                name="password"
+                className="w-4/6 py-4 rounded-full shadow-custom-shadow font-medium mx-auto mt-4 pr-6 outline-none fontcolor1 block"
+                placeholder="رمز عبور"
+              />
+              <div onClick={() => setShow(!show)}>
+                {show ? (
+                  <HiEye className="absolute left-24 top-8 w-7 h-7 text-gray-500 cursor-pointer" />
+                ) : (
+                  <HiEyeOff className="absolute left-24 top-8 w-7 h-7 text-gray-500 cursor-pointer" />
+                )}
+              </div>
+            </div>
             <button
               type="submit"
               className="w-4/6 flex justify-center py-4 px-4 border border-transparent rounded-full shadow-md text-base font-medium text-white bg-gray-500 hover:bg-gray-600 focus:outline-none mx-auto mt-4"

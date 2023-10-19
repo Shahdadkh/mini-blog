@@ -7,6 +7,7 @@ const MainHeader = () => {
     { name: "درباره ما", href: "/about-us" },
     { name: "ورود", href: "/login" },
   ];
+
   return (
     <div className="border border-transparent bg-white w-11/12 h-14 mx-auto">
       <div className="flex justify-between mt-3">

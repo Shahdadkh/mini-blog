@@ -1,6 +1,5 @@
 "use client";
 import { useParams } from "next/navigation";
-import MainHeader from "@/components/common/MainHeader";
 import { Formik, Form, Field } from "formik";
 
 interface typeValue {
@@ -45,7 +44,6 @@ const pageId = () => {
   return (
     <div>
       <div>
-        <MainHeader />
         <div className="border border-transparent w-11/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow">
           <div className="text-base font-bold mt-10 mx-6 text-center">
             {textList.title}
