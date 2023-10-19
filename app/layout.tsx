@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import iransans from "@/public/assets/fonts/IranSans/iransans";
+import MainHeader from "@/components/common/MainHeader";
 
 export const metadata: Metadata = {
   title: "My Gray Life",
@@ -14,7 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${iransans.className} font-iran`}>
-      <body>{children}</body>
+      <body>
+        <MainHeader />
+        {children}
+      </body>
     </html>
   );
 }

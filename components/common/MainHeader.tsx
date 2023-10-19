@@ -5,6 +5,7 @@ const MainHeader = () => {
   const menu = [
     { name: "خانه", href: "/" },
     { name: "درباره ما", href: "/about-us" },
+    { name: "ورود", href: "/login" },
   ];
   return (
     <div className="border border-transparent bg-white w-11/12 h-14 mx-auto">

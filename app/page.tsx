@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import MainHeader from "@/components/common/MainHeader";
 import Pagination from "@/components/common/Pagination";
 import { useState } from "react";
 
@@ -38,7 +37,6 @@ export default function Home() {
 
   return (
     <main>
-      <MainHeader />
       <div className="my-4">
         {files.slice(StartCourse, EndCourse).map((text) => (
           <Link key={text.id} href={`/post/${text.id}`}>

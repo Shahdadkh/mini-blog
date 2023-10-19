@@ -1,4 +1,3 @@
-import MainHeader from "@/components/common/MainHeader";
 import Link from "next/link";
 import {
   FaSquareFacebook,
@@ -21,7 +20,6 @@ const aboutus = () => {
 
   return (
     <div>
-      <MainHeader />
       <div className=" w-10/12 h-fit mx-auto mt-28 text-sm text-justify font-normal fontcolor1">
         {linkList.about}
       </div>
