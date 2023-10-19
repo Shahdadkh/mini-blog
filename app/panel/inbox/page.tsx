@@ -1,4 +1,5 @@
 "use client";
+import AnswerModal from "@/components/common/AnswerModal";
 import Pagination from "@/components/common/Pagination";
 import Link from "next/link";
 import { useState } from "react";
@@ -103,6 +104,7 @@ const Inbox = () => {
             )}
           </div>
         ))}
+      <AnswerModal />
       {files.length > pageSize && (
         <div className="my-4">
           <Pagination

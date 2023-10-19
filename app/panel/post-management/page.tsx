@@ -3,6 +3,8 @@ import { MdEdit, MdRemoveRedEye, MdDelete } from "react-icons/md";
 import Link from "next/link";
 import { useState } from "react";
 import Pagination from "@/components/common/Pagination";
+import Modal from "@/components/common/Modal";
+import EditPostModal from "@/components/common/EditPostModal";
 
 export const file = [
   {
@@ -132,6 +134,8 @@ const PostManagement = () => {
           </div>
         </div>
       </div>
+      <EditPostModal />
+      <Modal />
       {file.length > pageSize && (
         <div className="mt-4">
           <Pagination
