@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Modal = () => {
+const Modal = ({ showModal, setShowModal, showPosts }: any) => {
   const [open, setOpen] = useState(false);
+  const [showPost, setShowPost] = useState([]);
+
+  useEffect(() => {
+    if (showModal === true) {
+      setOpen(true);
+      setShowPost(showPosts);
+    }
+    if (open === false) {
+      setShowModal(false);
+    }
+  }, [open, showModal, setShowModal, showPosts]);
 
   const handleSubmit = () => {
-    console.log("ok");
+    console.log(showPost);
   };
 
   return (

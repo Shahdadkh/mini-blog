@@ -1,19 +1,34 @@
 import { Formik, Form, Field } from "formik";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface typeValue {
   text: string;
 }
 
-const AnswerModal = () => {
+const AnswerModal = ({
+  showAnswerModal,
+  setShowAnswerModal,
+  showAnswerPosts,
+}: any) => {
   const [open, setOpen] = useState(false);
+  const [showPost, setShowPost] = useState([]);
+
+  useEffect(() => {
+    if (showAnswerModal === true) {
+      setOpen(true);
+      setShowPost(showAnswerPosts);
+    }
+    if (open === false) {
+      setShowAnswerModal(false);
+    }
+  }, [open, showAnswerModal, setShowAnswerModal, showAnswerPosts]);
 
   const initialValues: typeValue = {
     text: "",
   };
 
   const handleSubmit = (value: any) => {
-    console.log(value);
+    console.log(value, showPost);
   };
 
   return (

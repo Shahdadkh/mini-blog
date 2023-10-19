@@ -9,23 +9,73 @@ import EditPostModal from "@/components/common/EditPostModal";
 export const file = [
   {
     id: 1,
-    title:
-      "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. ",
-    date: "1402/05/05",
+    title: "متن سوم",
+    text: "تکست آزمایشی",
+    date: "1402/07/05",
     active: true,
   },
-  { id: 2, title: "متن دوم", date: "1402/06/05", active: false },
-  { id: 3, title: "متن سوم", date: "1402/07/05", active: true },
-  { id: 4, title: "متن دوم", date: "1402/06/05", active: false },
-  { id: 5, title: "متن سوم", date: "1402/07/05", active: true },
-  { id: 6, title: "متن دوم", date: "1402/06/05", active: false },
-  { id: 7, title: "متن سوم", date: "1402/07/05", active: true },
-  { id: 8, title: "متن دوم", date: "1402/06/05", active: false },
+  {
+    id: 2,
+    title: "متن دوم",
+    text: "تکست آزمایشی",
+    date: "1402/06/05",
+    active: false,
+  },
+  {
+    id: 3,
+    title: "متن سوم",
+    text: "تکست آزمایشی",
+    date: "1402/07/05",
+    active: true,
+  },
+  {
+    id: 4,
+    title: "متن دوم",
+    text: "تکست آزمایشی",
+    date: "1402/06/05",
+    active: false,
+  },
+  {
+    id: 5,
+    title: "متن سوم",
+    text: "تکست آزمایشی",
+    date: "1402/07/05",
+    active: true,
+  },
+  {
+    id: 6,
+    title: "متن دوم",
+    text: "تکست آزمایشی",
+    date: "1402/06/05",
+    active: false,
+  },
+  {
+    id: 7,
+    title: "متن سوم",
+    text: "تکست آزمایشی",
+    date: "1402/07/05",
+    active: true,
+  },
+  {
+    id: 8,
+    title: "متن دوم",
+    text: "تکست آزمایشی",
+    date: "1402/06/05",
+    active: false,
+  },
 ];
 
 const PostManagement = () => {
   const [files, setFiles] = useState(file);
   const titleLength = 40;
+
+  //Modal
+  const [showModal, setShowModal] = useState(false);
+  const [showPost, setShowPost] = useState(null);
+
+  //EditPostModal
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showEditPost, setShowEditPost] = useState(null);
 
   //Pagination
   const pageSize = 7;
@@ -34,12 +84,14 @@ const PostManagement = () => {
   const StartCourse = Number(currentPage) * Number(pageSize);
   const EndCourse = Number(currentPage) * Number(pageSize) + Number(pageSize);
 
-  const handleDelete = (id: any) => {
-    console.log(id);
+  const handleDelete = (data: any) => {
+    setShowModal(data.value);
+    setShowPost(data.post);
   };
 
-  const handleEdit = (id: any) => {
-    console.log(id);
+  const handleEdit = (data: any) => {
+    setShowEditModal(data.value);
+    setShowEditPost(data.post);
   };
 
   return (
@@ -110,13 +162,17 @@ const PostManagement = () => {
                           </td>
                           <td className="whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-6">
                             <MdDelete
-                              onClick={() => handleDelete(file.id)}
+                              onClick={() =>
+                                handleDelete({ value: true, post: file.id })
+                              }
                               className="w-6 h-6 fontcolor1 mx-auto cursor-pointer"
                             />
                           </td>
                           <td className="whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-6">
                             <MdEdit
-                              onClick={() => handleEdit(file.id)}
+                              onClick={() =>
+                                handleEdit({ value: true, post: file })
+                              }
                               className="w-6 h-6 fontcolor1 mx-auto cursor-pointer"
                             />
                           </td>
@@ -134,8 +190,17 @@ const PostManagement = () => {
           </div>
         </div>
       </div>
-      <EditPostModal />
-      <Modal />
+      <EditPostModal
+        showEditModal={showEditModal}
+        setShowEditModal={setShowEditModal}
+        showPosts={showEditPost}
+        //getFiles={getList}
+      />
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        showPosts={showPost}
+      />
       {file.length > pageSize && (
         <div className="mt-4">
           <Pagination

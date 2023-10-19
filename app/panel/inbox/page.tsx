@@ -47,6 +47,9 @@ export const data = [
 const Inbox = () => {
   const [files, setFiles] = useState(data);
   const textLength = 60;
+  //AnswerModal
+  const [showAnswerModal, setShowAnswerModal] = useState(false);
+  const [showAnswerPost, setShowAnswerPost] = useState(null);
   //Pagination
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
@@ -54,8 +57,9 @@ const Inbox = () => {
   const StartCourse = Number(currentPage) * Number(pageSize);
   const EndCourse = Number(currentPage) * Number(pageSize) + Number(pageSize);
 
-  const handleAnswer = () => {
-    console.log("answer");
+  const handleAnswer = (data: any) => {
+    setShowAnswerModal(data.value);
+    setShowAnswerPost(data.post);
   };
 
   const handleDeactive = () => {
@@ -85,7 +89,7 @@ const Inbox = () => {
             <div className="text-sm fontcolor1 mx-4">{file.text}</div>
             <div className="mt-4">
               <button
-                onClick={() => handleAnswer()}
+                onClick={() => handleAnswer({ value: true, post: file })}
                 className="bg-gray-500 hover:bg-gray-600 text-white font-normal text-sm py-1.5 px-8 mr-3 ml-1 mt-1 rounded-full"
               >
                 پاسخ
@@ -104,7 +108,12 @@ const Inbox = () => {
             )}
           </div>
         ))}
-      <AnswerModal />
+      <AnswerModal
+        showAnswerModal={showAnswerModal}
+        setShowAnswerModal={setShowAnswerModal}
+        showAnswerPosts={showAnswerPost}
+        //getFiles={getList}
+      />
       {files.length > pageSize && (
         <div className="my-4">
           <Pagination
