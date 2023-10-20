@@ -6,7 +6,12 @@ interface typeValue {
   text: string;
 }
 
-const EditPostModal = ({ showEditModal, setShowEditModal, showPosts }: any) => {
+const EditPostModal = ({
+  showEditModal,
+  setShowEditModal,
+  showPosts,
+  setShowPosts,
+}: any) => {
   const [open, setOpen] = useState(false);
   const [toggle, setToggle] = useState(true);
 
@@ -16,8 +21,9 @@ const EditPostModal = ({ showEditModal, setShowEditModal, showPosts }: any) => {
     }
     if (open === false) {
       setShowEditModal(false);
+      setShowPosts(null);
     }
-  }, [open, showEditModal, setShowEditModal, showPosts]);
+  }, [open, showEditModal, setShowEditModal, showPosts, setShowPosts]);
 
   const initialValues: typeValue = {
     title: showPosts !== null ? showPosts.title : "",

@@ -194,6 +194,7 @@ const PostManagement = () => {
         showEditModal={showEditModal}
         setShowEditModal={setShowEditModal}
         showPosts={showEditPost}
+        setShowPosts={setShowEditPost}
         //getFiles={getList}
       />
       <Modal

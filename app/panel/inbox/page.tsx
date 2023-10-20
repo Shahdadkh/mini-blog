@@ -51,7 +51,7 @@ const Inbox = () => {
   const [showAnswerModal, setShowAnswerModal] = useState(false);
   const [showAnswerPost, setShowAnswerPost] = useState(null);
   //Pagination
-  const [pageSize, setPageSize] = useState(10);
+  const pageSize = 10;
   const [currentPage, setCurrentPage] = useState(0);
 
   const StartCourse = Number(currentPage) * Number(pageSize);
