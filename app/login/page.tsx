@@ -16,7 +16,21 @@ const login = () => {
   };
 
   const handleSubmit = (value: any) => {
-    console.log(value);
+    try {
+      fetch("http://localhost:8000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(value),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

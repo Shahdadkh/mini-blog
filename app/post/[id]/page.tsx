@@ -18,8 +18,6 @@ const pageId = ({ params }: any) => {
       });
   }, []);
 
-  console.log(files);
-
   const initialValues: typeValue = {
     name: "",
     message: "",
@@ -81,32 +79,34 @@ const pageId = ({ params }: any) => {
             <div className="text-lg text-center font-bold">بازخورد شما</div>
             {files.comments.length !== 0 ? (
               <div className="w-11/12 mx-auto">
-                {files.comments.map((msg: any) => (
-                  <div
-                    key={msg.id}
-                    className=" h-fit mt-5 rounded-xl shadow-custom-shadow py-1"
-                  >
-                    <div className="flex justify-between mx-3 mt-3">
-                      <div className="text-sm font-bold">{`${msg.name} نوشته:`}</div>
-                      <div className="text-xs">{msg.date}</div>
-                    </div>
-                    <div className="fontcolor1 text-sm mx-3 mb-3 mt-1">
-                      {msg.text}
-                    </div>
-                    {msg.answer && (
-                      <div className="flex justify-end w-full mt-3">
-                        <div className="bg-gray-200 w-[95%] h-fit rounded-xl mb-2 ml-3">
-                          <div className="text-sm font-bold mx-3 mt-3">
-                            پاسخ:
-                          </div>
-                          <div className="fontcolor1 text-sm mx-3 mb-3 mt-1">
-                            {msg.answer}
+                {files.comments
+                  .sort((a: any, b: any) => a.id - b.id)
+                  .map((msg: any) => (
+                    <div
+                      key={msg.id}
+                      className=" h-fit mt-5 rounded-xl shadow-custom-shadow py-1"
+                    >
+                      <div className="flex justify-between mx-3 mt-3">
+                        <div className="text-sm font-bold">{`${msg.name} نوشته:`}</div>
+                        <div className="text-xs">{msg.date}</div>
+                      </div>
+                      <div className="fontcolor1 text-sm mx-3 mb-3 mt-1">
+                        {msg.text}
+                      </div>
+                      {msg.answer && (
+                        <div className="flex justify-end w-full mt-3">
+                          <div className="bg-gray-200 w-[95%] h-fit rounded-xl mb-2 ml-3">
+                            <div className="text-sm font-bold mx-3 mt-3">
+                              پاسخ:
+                            </div>
+                            <div className="fontcolor1 text-sm mx-3 mb-3 mt-1">
+                              {msg.answer}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      )}
+                    </div>
+                  ))}
               </div>
             ) : (
               <div className="bg-gray-200 rounded-xl w-2/6 h-fit py-3 mx-auto text-center my-8">

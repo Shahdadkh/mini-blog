@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${iransans.className} font-iran`}>
       <body>
-        <PanelHeader />
+        <MainHeader />
         {children}
       </body>
     </html>
