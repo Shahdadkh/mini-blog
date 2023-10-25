@@ -8,7 +8,7 @@ export default function Home() {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/posts")
+    fetch(`${process.env.url}/posts`)
       .then((res) => res.json())
       .then((data) => {
         setFiles(data);

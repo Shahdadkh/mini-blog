@@ -1,5 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import iransans from "@/public/assets/fonts/IranSans/iransans";
 import MainHeader from "@/components/common/MainHeader";
 import PanelHeader from "@/components/common/PanelHeader";
@@ -19,6 +21,19 @@ export default function RootLayout({
       <body>
         <MainHeader />
         {children}
+        <ToastContainer
+          position="top-right"
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          bodyClassName={`${iransans.className} font-iran text-sm flex my-auto`}
+        />
       </body>
     </html>
   );

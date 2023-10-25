@@ -2,6 +2,7 @@
 import { Formik, Form, Field } from "formik";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface typeValue {
   username: string;
@@ -17,7 +18,7 @@ const login = () => {
 
   const handleSubmit = (value: any) => {
     try {
-      fetch("http://localhost:8000/api/auth/login", {
+      fetch(`${process.env.url}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +27,14 @@ const login = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          if (
+            data.message === "Wrong password." ||
+            data.message === "User not Found"
+          ) {
+            toast.error("نام کاربری یا رمز عبور اشتباه است");
+          } else {
+            console.log(data);
+          }
         });
     } catch (err) {
       console.log(err);
@@ -41,6 +49,7 @@ const login = () => {
             <Field
               type="text"
               name="username"
+              required
               className="w-4/6 py-4 rounded-full shadow-custom-shadow font-medium mx-auto mt-4 pr-6 outline-none fontcolor1 block"
               placeholder="نام کاربری"
             />
@@ -48,6 +57,7 @@ const login = () => {
               <Field
                 type={show ? "text" : "password"}
                 name="password"
+                required
                 className="w-4/6 py-4 rounded-full shadow-custom-shadow font-medium mx-auto mt-4 pr-6 outline-none fontcolor1 block"
                 placeholder="رمز عبور"
               />

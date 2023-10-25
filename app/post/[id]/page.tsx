@@ -1,17 +1,18 @@
 "use client";
 import { Formik, Form, Field } from "formik";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 interface typeValue {
   name: string;
-  message: string;
+  text: string;
 }
 
 const pageId = ({ params }: any) => {
   const [files, setFiles] = useState<any>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/posts/" + params.id)
+    fetch(`${process.env.url}/posts/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
         setFiles(data);
@@ -20,11 +21,34 @@ const pageId = ({ params }: any) => {
 
   const initialValues: typeValue = {
     name: "",
-    message: "",
+    text: "",
   };
 
   const handleSubmit = (value: any) => {
-    console.log(value);
+    const data = {
+      postId: params.id,
+      ...value,
+    };
+
+    try {
+      fetch(`${process.env.url}/comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "success") {
+            toast.success(data.message);
+          } else {
+            toast.error("خطا در ارسال اطلاعات");
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -51,6 +75,7 @@ const pageId = ({ params }: any) => {
                   <Field
                     type="text"
                     name="name"
+                    required
                     className="border border-transparent block w-full  py-2 px-3 rounded-xl shadow-custom-shadow outline-none fontcolor1"
                     placeholder="نام شما"
                   />
@@ -59,7 +84,8 @@ const pageId = ({ params }: any) => {
                   <Field
                     as="textarea"
                     rows="5"
-                    name="message"
+                    name="text"
+                    required
                     className="border border-transparent block w-full mt-6 py-2 px-3 rounded-xl shadow-custom-shadow outline-none fontcolor1"
                     placeholder="پیام بگذارید"
                   />
