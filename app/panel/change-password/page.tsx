@@ -1,21 +1,55 @@
 "use client";
+import { useAppSelector } from "@/redux/store";
 import { Formik, Form, Field } from "formik";
+import { toast } from "react-toastify";
 
 interface typeValue {
   oldPassword: string;
-  newPassowrd: string;
+  newPassword: string;
   repeatNewPassword: string;
 }
 
 const ChangePassword = () => {
+  const auth = useAppSelector((state) => state.authReducer.auth);
+
   const initialValues: typeValue = {
     oldPassword: "",
-    newPassowrd: "",
+    newPassword: "",
     repeatNewPassword: "",
   };
 
   const handleSubmit = (value: any) => {
-    console.log(value);
+    const data = {
+      oldPassword: value.oldPassword,
+      newPassword: value.newPassword,
+    };
+
+    if (value.newPassword.length < 5) {
+      toast.error("پسورد جدید باید بیشتر از 5 حرف باشد.");
+    } else if (value.newPassword === value.repeatNewPassword) {
+      try {
+        fetch(`${process.env.url}/users/password/${auth.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${auth.access_token}`,
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.status === "success") {
+              toast.success(data.message);
+            } else if (data.message === "Wrong password.") {
+              toast.error("پسورد فعلی وارد شده اشتباه است.");
+            }
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      toast.error("پسوردهای جدید وارد شده مطابقت ندارند.");
+    }
   };
 
   return (
@@ -26,18 +60,21 @@ const ChangePassword = () => {
             <Field
               type="password"
               name="oldPassword"
+              required
               className="w-4/6 py-4 rounded-full shadow-custom-shadow font-medium mx-auto mt-4 pr-6 outline-none fontcolor1 block"
               placeholder="رمز عبور فعلی"
             />
             <Field
               type="password"
-              name="newPassowrd"
+              name="newPassword"
+              required
               className="w-4/6 py-4 rounded-full shadow-custom-shadow font-medium mx-auto mt-4 pr-6 outline-none fontcolor1 block"
               placeholder="رمز عبور جدید"
             />
             <Field
               type="password"
               name="repeatNewPassword"
+              required
               className="w-4/6 py-4 rounded-full shadow-custom-shadow font-medium mx-auto mt-4 pr-6 outline-none fontcolor1 block"
               placeholder="تکرار رمز جدید"
             />
