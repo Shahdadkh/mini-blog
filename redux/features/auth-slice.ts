@@ -28,9 +28,9 @@ export const auth = createSlice({
     logIn: (state, action: PayloadAction<string>) => {
       return {
         auth: {
-          id: action.payload,
-          username: action.payload,
-          access_token: action.payload,
+          id: action.payload?.id,
+          username: action.payload?.username,
+          access_token: action.payload?.access_token,
         },
       };
     },

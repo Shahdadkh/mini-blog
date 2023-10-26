@@ -1,52 +1,23 @@
 "use client";
 import AnswerModal from "@/components/common/AnswerModal";
 import Pagination from "@/components/common/Pagination";
+import { useAppSelector } from "@/redux/store";
 import Link from "next/link";
-import { useState } from "react";
-
-export const data = [
-  {
-    id: 1,
-    name: "محمد",
-    title:
-      "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. ",
-    date: "13:50 - 1402/07/05",
-    text: "متن بسیار زیبایی بود",
-    active: true,
-    answer: "خواهش می‌کنم",
-  },
-  {
-    id: 2,
-    name: "محمد",
-    title: "متن شماره دو",
-    date: "13:00 - 1402/08/05",
-    text: "متن بسیار زیبایی بود",
-    active: false,
-    answer: "",
-  },
-  {
-    id: 3,
-    name: "محمد",
-    title: "متن شماره یک",
-    date: "13:50 - 1402/07/05",
-    text: "متن بسیار زیبایی بود",
-    active: true,
-    answer: "",
-  },
-  {
-    id: 4,
-    name: "محمد",
-    title: "متن شماره یک",
-    date: "13:50 - 1402/07/05",
-    text: "متن بسیار زیبایی بود",
-    active: true,
-    answer: "متشکرم",
-  },
-];
+import { useState, useEffect } from "react";
 
 const Inbox = () => {
-  const [files, setFiles] = useState(data);
   const textLength = 60;
+  const auth = useAppSelector((state) => state.authReducer.auth);
+  const [files, setFiles] = useState([]);
+
+  useEffect(() => {
+    fetch(`${process.env.url}/comments`)
+      .then((res) => res.json())
+      .then((data) => {
+        setFiles(data);
+      });
+  }, []);
+
   //AnswerModal
   const [showAnswerModal, setShowAnswerModal] = useState(false);
   const [showAnswerPost, setShowAnswerPost] = useState(null);
@@ -69,9 +40,9 @@ const Inbox = () => {
   return (
     <div className="mb-4">
       {files
-        .sort((a, b) => b.id - a.id)
+        .sort((a: any, b: any) => b.id - a.id)
         .slice(StartCourse, EndCourse)
-        .map((file, i) => (
+        .map((file: any, i) => (
           <div
             key={i}
             className="w-9/12 h-fit py-4 rounded-xl mx-auto mt-5 shadow-custom-shadow"
@@ -79,9 +50,9 @@ const Inbox = () => {
             <div className="flex justify-between mx-4">
               <Link href={`/post/${file.id}`} className="text-sm font-semibold">
                 {`${file.name} در پست ${
-                  file.title.length > textLength
-                    ? `${file.title.slice(0, textLength)}...`
-                    : file.title
+                  file.post.title.length > textLength
+                    ? `${file.post.title.slice(0, textLength)}...`
+                    : file.post.title
                 }`}
               </Link>
               <div className="text-xs font-semibold">{file.date}</div>

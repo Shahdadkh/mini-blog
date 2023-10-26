@@ -1,7 +1,13 @@
 "use client";
 import Link from "next/link";
+import { logOut } from "@/redux/features/auth-slice";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const PanelHeader = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
   const menu = [
     { name: "دیدن سایت", href: "/" },
     { name: "پست جدید", href: "/panel/new-post" },
@@ -12,7 +18,8 @@ const PanelHeader = () => {
   ];
 
   const handleExit = () => {
-    console.log("ok");
+    dispatch(logOut());
+    router.push("/");
   };
 
   return (

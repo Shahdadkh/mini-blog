@@ -26,7 +26,7 @@ export default function Home() {
     <main>
       <div className="my-4">
         {files
-          .sort((a: any, b: any) => a.id - b.id)
+          .sort((a: any, b: any) => b.id - a.id)
           .slice(StartCourse, EndCourse)
           .map((text: any) => (
             <Link key={text.id} href={`/post/${text.id}`}>
