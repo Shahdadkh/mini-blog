@@ -3,6 +3,10 @@ import { Formik, Form, Field } from "formik";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { logIn } from "@/redux/features/auth-slice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { useRouter } from "next/navigation";
 
 interface typeValue {
   username: string;
@@ -10,6 +14,9 @@ interface typeValue {
 }
 
 const login = () => {
+  const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+
   const [show, setShow] = useState(false);
   const initialValues: typeValue = {
     username: "",
@@ -33,7 +40,8 @@ const login = () => {
           ) {
             toast.error("نام کاربری یا رمز عبور اشتباه است");
           } else {
-            console.log(data);
+            dispatch(logIn(data));
+            router.push("/");
           }
         });
     } catch (err) {

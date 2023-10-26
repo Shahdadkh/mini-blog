@@ -56,7 +56,7 @@ const pageId = ({ params }: any) => {
       {files !== null && (
         <div>
           <div>
-            <div className="border border-transparent w-11/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow">
+            <div className="border border-transparent w-10/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow">
               <div className="text-base font-bold mt-10 mx-6 text-center">
                 {files.title}
               </div>
@@ -70,7 +70,7 @@ const pageId = ({ params }: any) => {
           </div>
           <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             <Form>
-              <div className=" w-11/12 mx-auto my-5">
+              <div className=" w-5/12 mx-auto my-8">
                 <div>
                   <Field
                     type="text"
@@ -104,7 +104,7 @@ const pageId = ({ params }: any) => {
           <div className="my-4">
             <div className="text-lg text-center font-bold">بازخورد شما</div>
             {files.comments.length !== 0 ? (
-              <div className="w-11/12 mx-auto">
+              <div className="w-9/12 mx-auto">
                 {files.comments
                   .sort((a: any, b: any) => a.id - b.id)
                   .map((msg: any) => (

@@ -74,7 +74,7 @@ const Inbox = () => {
         .map((file, i) => (
           <div
             key={i}
-            className="w-11/12 h-fit py-4 rounded-xl mx-auto mt-5 shadow-custom-shadow"
+            className="w-9/12 h-fit py-4 rounded-xl mx-auto mt-5 shadow-custom-shadow"
           >
             <div className="flex justify-between mx-4">
               <Link href={`/post/${file.id}`} className="text-sm font-semibold">

@@ -30,7 +30,7 @@ export default function Home() {
           .slice(StartCourse, EndCourse)
           .map((text: any) => (
             <Link key={text.id} href={`/post/${text.id}`}>
-              <div className="border border-transparent w-11/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow">
+              <div className="border border-transparent w-10/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow">
                 <div className="text-base font-bold mt-4 mx-6">
                   {text.title}
                 </div>

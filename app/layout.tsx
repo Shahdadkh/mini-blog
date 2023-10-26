@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import iransans from "@/public/assets/fonts/IranSans/iransans";
-import MainHeader from "@/components/common/MainHeader";
-import PanelHeader from "@/components/common/PanelHeader";
+import { ReduxProvider } from "@/redux/provider";
+import Header from "@/components/common/Header/Header";
 
 export const metadata: Metadata = {
   title: "My Gray Life",
@@ -19,21 +19,23 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${iransans.className} font-iran`}>
       <body>
-        <MainHeader />
-        {children}
-        <ToastContainer
-          position="top-right"
-          autoClose={2500}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          bodyClassName={`${iransans.className} font-iran text-sm flex my-auto`}
-        />
+        <ReduxProvider>
+          <Header />
+          {children}
+          <ToastContainer
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            bodyClassName={`${iransans.className} font-iran text-sm flex my-auto`}
+          />
+        </ReduxProvider>
       </body>
     </html>
   );
