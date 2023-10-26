@@ -13,7 +13,6 @@ const PanelHeader = () => {
     { name: "پست جدید", href: "/panel/new-post" },
     { name: "مدیریت پست‌ها", href: "/panel/post-management" },
     { name: "صندوق پیام", href: "/panel/inbox" },
-    { name: "ویرایش درباره ما", href: "/panel/edit-aboutus" },
     { name: "تغییر رمز عبور", href: "/panel/change-password" },
   ];
 

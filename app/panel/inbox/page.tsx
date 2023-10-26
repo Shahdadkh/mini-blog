@@ -4,19 +4,12 @@ import Pagination from "@/components/common/Pagination";
 import { useAppSelector } from "@/redux/store";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Inbox = () => {
   const textLength = 60;
   const auth = useAppSelector((state) => state.authReducer.auth);
   const [files, setFiles] = useState([]);
-
-  useEffect(() => {
-    fetch(`${process.env.url}/comments`)
-      .then((res) => res.json())
-      .then((data) => {
-        setFiles(data);
-      });
-  }, []);
 
   //AnswerModal
   const [showAnswerModal, setShowAnswerModal] = useState(false);
@@ -28,13 +21,71 @@ const Inbox = () => {
   const StartCourse = Number(currentPage) * Number(pageSize);
   const EndCourse = Number(currentPage) * Number(pageSize) + Number(pageSize);
 
+  useEffect(() => {
+    fetch(`${process.env.url}/comments`)
+      .then((res) => res.json())
+      .then((data) => {
+        setFiles(data);
+      });
+  }, []);
+
   const handleAnswer = (data: any) => {
     setShowAnswerModal(data.value);
     setShowAnswerPost(data.post);
   };
 
-  const handleDeactive = () => {
-    console.log("Deactive");
+  const handleDeactive = (id: any) => {
+    const data = {
+      verify: false,
+    };
+
+    try {
+      fetch(`${process.env.url}/comments/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.access_token}`,
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "success") {
+            toast.success(data.message);
+          } else {
+            toast.error("خطا در ارسال اطلاعات");
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleActive = (id: any) => {
+    const data = {
+      verify: true,
+    };
+
+    try {
+      fetch(`${process.env.url}/comments/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.access_token}`,
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "success") {
+            toast.success(data.message);
+          } else {
+            toast.error("خطا در ارسال اطلاعات");
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -48,7 +99,10 @@ const Inbox = () => {
             className="w-9/12 h-fit py-4 rounded-xl mx-auto mt-5 shadow-custom-shadow"
           >
             <div className="flex justify-between mx-4">
-              <Link href={`/post/${file.id}`} className="text-sm font-semibold">
+              <Link
+                href={`/post/${file.postId}`}
+                className="text-sm font-semibold"
+              >
                 {`${file.name} در پست ${
                   file.post.title.length > textLength
                     ? `${file.post.title.slice(0, textLength)}...`
@@ -65,12 +119,21 @@ const Inbox = () => {
               >
                 پاسخ
               </button>
-              <button
-                onClick={() => handleDeactive()}
-                className="bg-white fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
-              >
-                {file.active ? "غیرفعال" : "فعال"}
-              </button>
+              {file.verify ? (
+                <button
+                  onClick={() => handleDeactive(file.id)}
+                  className="bg-white fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
+                >
+                  غیرفعال
+                </button>
+              ) : (
+                <button
+                  onClick={() => handleActive(file.id)}
+                  className="bg-white fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
+                >
+                  فعال
+                </button>
+              )}
             </div>
             {file.answer && (
               <div className="w-[98%] h-fit text-sm rounded-xl mt-2 mx-auto p-3 bg-gray-200">
@@ -83,7 +146,6 @@ const Inbox = () => {
         showAnswerModal={showAnswerModal}
         setShowAnswerModal={setShowAnswerModal}
         showAnswerPosts={showAnswerPost}
-        //getFiles={getList}
       />
       {files.length > pageSize && (
         <div className="my-4">

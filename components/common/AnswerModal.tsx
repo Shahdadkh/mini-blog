@@ -1,8 +1,10 @@
+import { useAppSelector } from "@/redux/store";
 import { Formik, Form, Field } from "formik";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 interface typeValue {
-  text: string;
+  answer: string;
 }
 
 const AnswerModal = ({
@@ -10,8 +12,9 @@ const AnswerModal = ({
   setShowAnswerModal,
   showAnswerPosts,
 }: any) => {
+  const auth = useAppSelector((state) => state.authReducer.auth);
   const [open, setOpen] = useState(false);
-  const [showPost, setShowPost] = useState([]);
+  const [showPost, setShowPost] = useState<any>("");
 
   useEffect(() => {
     if (showAnswerModal === true) {
@@ -24,11 +27,31 @@ const AnswerModal = ({
   }, [open, showAnswerModal, setShowAnswerModal, showAnswerPosts]);
 
   const initialValues: typeValue = {
-    text: "",
+    answer: "",
   };
 
   const handleSubmit = (value: any) => {
-    console.log(value, showPost);
+    try {
+      fetch(`${process.env.url}/comments/${showPost.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.access_token}`,
+        },
+        body: JSON.stringify(value),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "success") {
+            toast.success(data.message);
+            setOpen(false);
+          } else {
+            toast.error("خطا در ارسال اطلاعات");
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -64,7 +87,7 @@ const AnswerModal = ({
                         <Field
                           as="textarea"
                           rows="6"
-                          name="text"
+                          name="answer"
                           className="border border-transparent block w-full mt-2 py-2 px-3 rounded-xl shadow-custom-shadow outline-none fontcolor1"
                           placeholder="پاسخ به پیام"
                         />
