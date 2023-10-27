@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Pagination from "@/components/common/Pagination";
 import DeleteModal from "@/components/common/DeleteModal";
 import EditPostModal from "@/components/common/EditPostModal";
+import { exportDate } from "@/components/utils/utils.utils";
 
 const PostManagement = () => {
   const [files, setFiles] = useState([]);
@@ -106,7 +107,7 @@ const PostManagement = () => {
                                   : file.title}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
-                                {file.date}
+                                {exportDate(file.date)}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
                                 {file.verify ? "فعال" : "غیرفعال"}

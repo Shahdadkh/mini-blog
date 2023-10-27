@@ -3,6 +3,7 @@ import { Formik, Form, Field } from "formik";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { exportDate, exportDateAndTime } from "@/components/utils/utils.utils";
 
 interface typeValue {
   name: string;
@@ -67,7 +68,7 @@ const pageId = ({ params }: any) => {
                 {files.title}
               </div>
               <div className="text-sm font-normal mt-1 text-center fontcolor1">
-                {files.date}
+                {exportDate(files.date)}
               </div>
               <div className="text-sm font-light text-justify mt-5 mb-10 mx-6 fontcolor1">
                 {files.text}
@@ -121,7 +122,9 @@ const pageId = ({ params }: any) => {
                     >
                       <div className="flex justify-between mx-3 mt-3">
                         <div className="text-sm font-bold">{`${msg.name} نوشته:`}</div>
-                        <div className="text-xs">{msg.date}</div>
+                        <div className="text-xs">
+                          {exportDateAndTime(msg.date)}
+                        </div>
                       </div>
                       <div className="fontcolor1 text-sm mx-3 mb-3 mt-1">
                         {msg.text}

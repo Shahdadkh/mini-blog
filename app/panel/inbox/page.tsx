@@ -2,6 +2,7 @@
 import AnswerModal from "@/components/common/AnswerModal";
 import DeactiveModal from "@/components/common/DeactiveModal";
 import Pagination from "@/components/common/Pagination";
+import { exportDateAndTime } from "@/components/utils/utils.utils";
 import { useAppSelector } from "@/redux/store";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -91,7 +92,9 @@ const Inbox = () => {
                     : file.post.title
                 }`}
               </Link>
-              <div className="text-xs font-semibold">{file.date}</div>
+              <div className="text-xs font-semibold">
+                {exportDateAndTime(file.date)}
+              </div>
             </div>
             <div className="text-sm fontcolor1 mx-4">{file.text}</div>
             <div className="mt-4">

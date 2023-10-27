@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Pagination from "@/components/common/Pagination";
 import { useState, useEffect } from "react";
+import { exportDate } from "@/components/utils/utils.utils";
 
 export default function Home() {
   const textLength = 500;
@@ -36,7 +37,7 @@ export default function Home() {
                   {text.title}
                 </div>
                 <div className="text-sm font-normal mr-6 mt-1 fontcolor1">
-                  {text.date}
+                  {exportDate(text.date)}
                 </div>
                 <div className="text-sm font-light text-justify mt-2 mb-4 mx-6 fontcolor1">
                   {text.text.length > textLength
