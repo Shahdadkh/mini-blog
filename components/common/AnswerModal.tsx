@@ -47,6 +47,7 @@ const AnswerModal = ({
             toast.success(data.message);
             getFiles();
             setOpen(false);
+            value.answer = "";
           } else {
             toast.error("خطا در ارسال اطلاعات");
           }
