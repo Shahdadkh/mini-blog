@@ -32,12 +32,16 @@ const Inbox = () => {
   const StartCourse = Number(currentPage) * Number(pageSize);
   const EndCourse = Number(currentPage) * Number(pageSize) + Number(pageSize);
 
-  useEffect(() => {
+  const getData = () => {
     fetch(`${process.env.url}/comments`)
       .then((res) => res.json())
       .then((data) => {
         setFiles(data);
       });
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   const handleAnswer = (data: any) => {
@@ -68,6 +72,7 @@ const Inbox = () => {
         .then((data) => {
           if (data.status === "success") {
             toast.success(data.message);
+            getData();
           } else {
             toast.error("خطا در ارسال اطلاعات");
           }
@@ -120,7 +125,7 @@ const Inbox = () => {
               ) : (
                 <button
                   onClick={() => handleActive(file.id)}
-                  className="bg-white fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
+                  className="bg-gray-200 fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
                 >
                   فعال
                 </button>
@@ -137,11 +142,13 @@ const Inbox = () => {
         showModal={showModal}
         setShowModal={setShowModal}
         showPosts={showPost}
+        getFiles={getData}
       />
       <AnswerModal
         showAnswerModal={showAnswerModal}
         setShowAnswerModal={setShowAnswerModal}
         showAnswerPosts={showAnswerPost}
+        getFiles={getData}
       />
       {files.length > pageSize && (
         <div className="my-4">

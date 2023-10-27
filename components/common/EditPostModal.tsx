@@ -13,6 +13,7 @@ const EditPostModal = ({
   setShowEditModal,
   showPosts,
   setShowPosts,
+  getFiles,
 }: any) => {
   const auth = useAppSelector((state) => state.authReducer.auth);
   const [open, setOpen] = useState(false);
@@ -53,6 +54,7 @@ const EditPostModal = ({
         .then((data) => {
           if (data.status === "success") {
             toast.success(data.message);
+            getFiles();
             setOpen(false);
           } else {
             toast.error("خطا در ارسال اطلاعات");

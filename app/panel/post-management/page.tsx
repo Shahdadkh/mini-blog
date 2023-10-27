@@ -18,12 +18,16 @@ const PostManagement = () => {
     redirect("/");
   }
 
-  useEffect(() => {
+  const getData = () => {
     fetch(`${process.env.url}/posts`)
       .then((res) => res.json())
       .then((data) => {
         setFiles(data);
       });
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   //DeleteModal
@@ -154,12 +158,13 @@ const PostManagement = () => {
             setShowEditModal={setShowEditModal}
             showPosts={showEditPost}
             setShowPosts={setShowEditPost}
-            //getFiles={getList}
+            getFiles={getData}
           />
           <DeleteModal
             showModal={showModal}
             setShowModal={setShowModal}
             showPosts={showPost}
+            getFiles={getData}
           />
           {files.length > pageSize && (
             <div className="mt-4">

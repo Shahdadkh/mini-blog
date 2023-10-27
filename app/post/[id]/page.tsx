@@ -14,7 +14,7 @@ const pageId = ({ params }: any) => {
   const router = useRouter();
   const [files, setFiles] = useState<any>(null);
 
-  useEffect(() => {
+  const getData = () => {
     fetch(`${process.env.url}/posts/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -24,6 +24,10 @@ const pageId = ({ params }: any) => {
           router.push("/not-found");
         }
       });
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   const initialValues: typeValue = {
@@ -110,7 +114,8 @@ const pageId = ({ params }: any) => {
           </Formik>
           <div className="my-4">
             <div className="text-lg text-center font-bold">بازخورد شما</div>
-            {files.comments.length !== 0 ? (
+            {files.comments.filter((file: any) => file.verify !== false)
+              .length !== 0 ? (
               <div className="w-9/12 mx-auto">
                 {files.comments
                   .sort((a: any, b: any) => a.id - b.id)

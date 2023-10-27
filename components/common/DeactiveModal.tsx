@@ -2,7 +2,12 @@ import { useAppSelector } from "@/redux/store";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-const DeactiveModal = ({ showModal, setShowModal, showPosts }: any) => {
+const DeactiveModal = ({
+  showModal,
+  setShowModal,
+  showPosts,
+  getFiles,
+}: any) => {
   const auth = useAppSelector((state) => state.authReducer.auth);
   const [open, setOpen] = useState(false);
   const [showPost, setShowPost] = useState([]);
@@ -35,6 +40,7 @@ const DeactiveModal = ({ showModal, setShowModal, showPosts }: any) => {
         .then((data) => {
           if (data.status === "success") {
             toast.success(data.message);
+            getFiles();
             setOpen(false);
           } else {
             toast.error("خطا در ارسال اطلاعات");
