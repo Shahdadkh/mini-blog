@@ -5,12 +5,18 @@ import Pagination from "@/components/common/Pagination";
 import { exportDateAndTime } from "@/components/utils/utils.utils";
 import { useAppSelector } from "@/redux/store";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
 const Inbox = () => {
   const textLength = 60;
   const auth = useAppSelector((state) => state.authReducer.auth);
+
+  if (auth.access_token === "") {
+    redirect("/");
+  }
+
   const [files, setFiles] = useState([]);
 
   //DeactiveModal

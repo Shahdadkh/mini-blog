@@ -6,10 +6,17 @@ import Pagination from "@/components/common/Pagination";
 import DeleteModal from "@/components/common/DeleteModal";
 import EditPostModal from "@/components/common/EditPostModal";
 import { exportDate } from "@/components/utils/utils.utils";
+import { redirect } from "next/navigation";
+import { useAppSelector } from "@/redux/store";
 
 const PostManagement = () => {
+  const auth = useAppSelector((state) => state.authReducer.auth);
   const [files, setFiles] = useState([]);
   const titleLength = 40;
+
+  if (auth.access_token === "") {
+    redirect("/");
+  }
 
   useEffect(() => {
     fetch(`${process.env.url}/posts`)

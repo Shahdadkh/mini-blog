@@ -1,6 +1,7 @@
 "use client";
 import { useAppSelector } from "@/redux/store";
 import { Formik, Form, Field } from "formik";
+import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
 
 interface typeValue {
@@ -10,6 +11,10 @@ interface typeValue {
 
 const NewPost = () => {
   const auth = useAppSelector((state) => state.authReducer.auth);
+
+  if (auth.access_token === "") {
+    redirect("/");
+  }
 
   const initialValues: typeValue = {
     title: "",
