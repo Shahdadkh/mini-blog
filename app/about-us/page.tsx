@@ -11,10 +11,10 @@ const aboutus = () => {
     about:
       "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
     links: [
-      { icon: FaSquareFacebook, src: "/" },
-      { icon: FaXTwitter, src: "/" },
-      { icon: FaTelegram, src: "/" },
-      { icon: FaInstagram, src: "/" },
+      { icon: FaSquareFacebook, src: "/", active: true },
+      { icon: FaXTwitter, src: "/", active: true },
+      { icon: FaTelegram, src: "/", active: true },
+      { icon: FaInstagram, src: "/", active: true },
     ],
   };
 
@@ -24,11 +24,13 @@ const aboutus = () => {
         {linkList.about}
       </div>
       <div className="flex justify-center gap-2 flex-row-reverse mt-10">
-        {linkList.links.map((link, i) => (
-          <Link key={i} href={link.src}>
-            <link.icon className="w-6 h-6" />
-          </Link>
-        ))}
+        {linkList.links
+          .filter((link) => link.active !== false)
+          .map((link, i) => (
+            <Link key={i} href={link.src}>
+              <link.icon className="w-6 h-6" />
+            </Link>
+          ))}
       </div>
     </div>
   );

@@ -1,6 +1,9 @@
+import { useAppSelector } from "@/redux/store";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
-const Modal = ({ showModal, setShowModal, showPosts }: any) => {
+const DeleteModal = ({ showModal, setShowModal, showPosts }: any) => {
+  const auth = useAppSelector((state) => state.authReducer.auth);
   const [open, setOpen] = useState(false);
   const [showPost, setShowPost] = useState([]);
 
@@ -15,7 +18,26 @@ const Modal = ({ showModal, setShowModal, showPosts }: any) => {
   }, [open, showModal, setShowModal, showPosts]);
 
   const handleSubmit = () => {
-    console.log(showPost);
+    try {
+      fetch(`${process.env.url}/posts/${showPost}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.access_token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "success") {
+            toast.success(data.message);
+            setOpen(false);
+          } else {
+            toast.error("خطا در ارسال اطلاعات");
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -72,4 +94,4 @@ const Modal = ({ showModal, setShowModal, showPosts }: any) => {
   );
 };
 
-export default Modal;
+export default DeleteModal;

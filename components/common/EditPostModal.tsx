@@ -1,5 +1,7 @@
+import { useAppSelector } from "@/redux/store";
 import { Formik, Form, Field } from "formik";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 interface typeValue {
   title: string;
@@ -12,12 +14,14 @@ const EditPostModal = ({
   showPosts,
   setShowPosts,
 }: any) => {
+  const auth = useAppSelector((state) => state.authReducer.auth);
   const [open, setOpen] = useState(false);
   const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
     if (showEditModal === true) {
       setOpen(true);
+      setToggle(showPosts.verify);
     }
     if (open === false) {
       setShowEditModal(false);
@@ -31,7 +35,32 @@ const EditPostModal = ({
   };
 
   const handleSubmit = (value: any) => {
-    console.log(value, showPosts);
+    const data = {
+      ...value,
+      verify: toggle,
+    };
+
+    try {
+      fetch(`${process.env.url}/posts/${showPosts.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.access_token}`,
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "success") {
+            toast.success(data.message);
+            setOpen(false);
+          } else {
+            toast.error("خطا در ارسال اطلاعات");
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

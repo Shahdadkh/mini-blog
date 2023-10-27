@@ -2,6 +2,7 @@
 import { Formik, Form, Field } from "formik";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 interface typeValue {
   name: string;
@@ -9,13 +10,18 @@ interface typeValue {
 }
 
 const pageId = ({ params }: any) => {
+  const router = useRouter();
   const [files, setFiles] = useState<any>(null);
 
   useEffect(() => {
     fetch(`${process.env.url}/posts/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
-        setFiles(data);
+        if (data.message !== "post not found.") {
+          setFiles(data);
+        } else {
+          router.push("/not-found");
+        }
       });
   }, []);
 
@@ -53,7 +59,7 @@ const pageId = ({ params }: any) => {
 
   return (
     <div>
-      {files !== null && (
+      {files !== null && files.verify === true && (
         <div>
           <div>
             <div className="border border-transparent w-10/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow">
@@ -107,6 +113,7 @@ const pageId = ({ params }: any) => {
               <div className="w-9/12 mx-auto">
                 {files.comments
                   .sort((a: any, b: any) => a.id - b.id)
+                  .filter((file: any) => file.verify !== false)
                   .map((msg: any) => (
                     <div
                       key={msg.id}

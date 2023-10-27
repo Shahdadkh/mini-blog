@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import iransans from "@/public/assets/fonts/IranSans/iransans";
 import { ReduxProvider } from "@/redux/provider";
-import Header from "@/components/common/Header/Header";
+import Header from "@/components/common/header-page/Header";
 
 export const metadata: Metadata = {
   title: "My Gray Life",

@@ -3,7 +3,7 @@ import { MdEdit, MdRemoveRedEye, MdDelete } from "react-icons/md";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Pagination from "@/components/common/Pagination";
-import Modal from "@/components/common/Modal";
+import DeleteModal from "@/components/common/DeleteModal";
 import EditPostModal from "@/components/common/EditPostModal";
 
 const PostManagement = () => {
@@ -109,7 +109,7 @@ const PostManagement = () => {
                                 {file.date}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
-                                {file.active ? "فعال" : "غیرفعال"}
+                                {file.verify ? "فعال" : "غیرفعال"}
                               </td>
                               <td className="whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-6">
                                 <MdDelete
@@ -148,7 +148,7 @@ const PostManagement = () => {
             setShowPosts={setShowEditPost}
             //getFiles={getList}
           />
-          <Modal
+          <DeleteModal
             showModal={showModal}
             setShowModal={setShowModal}
             showPosts={showPost}
