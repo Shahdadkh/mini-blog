@@ -1,6 +1,9 @@
+import { useAppSelector } from "@/redux/store";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const DeactiveModal = ({ showModal, setShowModal, showPosts }: any) => {
+  const auth = useAppSelector((state) => state.authReducer.auth);
   const [open, setOpen] = useState(false);
   const [showPost, setShowPost] = useState([]);
 
@@ -15,7 +18,31 @@ const DeactiveModal = ({ showModal, setShowModal, showPosts }: any) => {
   }, [open, showModal, setShowModal, showPosts]);
 
   const handleSubmit = () => {
-    console.log(showPost);
+    const data = {
+      verify: false,
+    };
+
+    try {
+      fetch(`${process.env.url}/comments/${showPost}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.access_token}`,
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "success") {
+            toast.success(data.message);
+            setOpen(false);
+          } else {
+            toast.error("خطا در ارسال اطلاعات");
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -45,7 +72,7 @@ const DeactiveModal = ({ showModal, setShowModal, showPosts }: any) => {
             <div className="mt-3 text-center sm:mt-5">
               <div className="mt-2">
                 <p className="text-base text-gray-500 font-semibold">
-                  آیا از حذف این پست اطمینان دارید؟
+                  آیا از غیرفعال کردن این بازخورد اطمینان دارید؟
                 </p>
               </div>
             </div>
@@ -56,7 +83,7 @@ const DeactiveModal = ({ showModal, setShowModal, showPosts }: any) => {
               onClick={() => handleSubmit()}
               className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-500 text-base font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-0 sm:col-start-2 sm:text-sm"
             >
-              حذف پست
+              غیرفعال کردن
             </button>
             <button
               type="button"

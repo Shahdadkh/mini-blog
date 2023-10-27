@@ -18,7 +18,7 @@ const PostManagement = () => {
       });
   }, []);
 
-  //Modal
+  //DeleteModal
   const [showModal, setShowModal] = useState(false);
   const [showPost, setShowPost] = useState(null);
 
@@ -152,8 +152,6 @@ const PostManagement = () => {
             showModal={showModal}
             setShowModal={setShowModal}
             showPosts={showPost}
-            text="آیا از حذف این پست اطمینان دارید؟"
-            textButton="حذف پست"
           />
           {files.length > pageSize && (
             <div className="mt-4">

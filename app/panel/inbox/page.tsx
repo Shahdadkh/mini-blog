@@ -1,5 +1,6 @@
 "use client";
 import AnswerModal from "@/components/common/AnswerModal";
+import DeactiveModal from "@/components/common/DeactiveModal";
 import Pagination from "@/components/common/Pagination";
 import { useAppSelector } from "@/redux/store";
 import Link from "next/link";
@@ -11,6 +12,9 @@ const Inbox = () => {
   const auth = useAppSelector((state) => state.authReducer.auth);
   const [files, setFiles] = useState([]);
 
+  //DeactiveModal
+  const [showModal, setShowModal] = useState(false);
+  const [showPost, setShowPost] = useState(null);
   //AnswerModal
   const [showAnswerModal, setShowAnswerModal] = useState(false);
   const [showAnswerPost, setShowAnswerPost] = useState(null);
@@ -35,30 +39,8 @@ const Inbox = () => {
   };
 
   const handleDeactive = (id: any) => {
-    const data = {
-      verify: false,
-    };
-
-    try {
-      fetch(`${process.env.url}/comments/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${auth.access_token}`,
-        },
-        body: JSON.stringify(data),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status === "success") {
-            toast.success(data.message);
-          } else {
-            toast.error("خطا در ارسال اطلاعات");
-          }
-        });
-    } catch (err) {
-      console.log(err);
-    }
+    setShowModal(true);
+    setShowPost(id);
   };
 
   const handleActive = (id: any) => {
@@ -142,6 +124,11 @@ const Inbox = () => {
             )}
           </div>
         ))}
+      <DeactiveModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        showPosts={showPost}
+      />
       <AnswerModal
         showAnswerModal={showAnswerModal}
         setShowAnswerModal={setShowAnswerModal}
