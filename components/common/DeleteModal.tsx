@@ -77,14 +77,14 @@ const DeleteModal = ({ showModal, setShowModal, showPosts, getFiles }: any) => {
             <button
               type="button"
               onClick={() => handleSubmit()}
-              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-500 text-base font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-0 sm:col-start-2 sm:text-sm"
+              className="w-full inline-flex justify-center rounded-full border border-transparent shadow-sm px-4 py-2 bg-gray-500 text-base font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-0 sm:col-start-2 sm:text-sm"
             >
               حذف پست
             </button>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-0 sm:mt-0 sm:col-start-1 sm:text-sm"
+              className="mt-3 w-full inline-flex justify-center rounded-full border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-0 sm:mt-0 sm:col-start-1 sm:text-sm"
             >
               انصراف
             </button>

@@ -53,7 +53,7 @@ const login = () => {
     <div>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form>
-          <div className="border border-transparent w-2/6 h-72 mx-auto mt-28">
+          <div className="border border-transparent w-full sm:w-2/6 h-72 mx-auto mt-28">
             <Field
               type="text"
               name="username"
@@ -71,9 +71,9 @@ const login = () => {
               />
               <div onClick={() => setShow(!show)}>
                 {show ? (
-                  <HiEye className="absolute left-24 top-8 w-7 h-7 text-gray-500 cursor-pointer" />
+                  <HiEye className="absolute left-20 sm:left-24 top-8 w-7 h-7 text-gray-500 cursor-pointer" />
                 ) : (
-                  <HiEyeOff className="absolute left-24 top-8 w-7 h-7 text-gray-500 cursor-pointer" />
+                  <HiEyeOff className="absolute left-20 sm:left-24 top-8 w-7 h-7 text-gray-500 cursor-pointer" />
                 )}
               </div>
             </div>

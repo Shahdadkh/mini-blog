@@ -61,7 +61,7 @@ const ChangePassword = () => {
     <div>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form>
-          <div className="border border-transparent w-2/6 h-72 mx-auto mt-28">
+          <div className="border border-transparent w-full md:w-4/6 lg:w-2/6 h-72 mx-auto mt-28">
             <Field
               type="password"
               name="oldPassword"

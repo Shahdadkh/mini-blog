@@ -12,7 +12,7 @@ import { useAppSelector } from "@/redux/store";
 const PostManagement = () => {
   const auth = useAppSelector((state) => state.authReducer.auth);
   const [files, setFiles] = useState([]);
-  const titleLength = 40;
+  const titleLength = 18;
 
   if (auth.access_token === "") {
     redirect("/");
@@ -59,7 +59,7 @@ const PostManagement = () => {
     <div>
       {files.length > 0 && (
         <div>
-          <div className="px-4 sm:px-6 lg:px-8 w-8/12 mx-auto">
+          <div className="px-4 sm:px-6 lg:px-8 w-11/12 sm:w-9/12 lg:w-8/12 mx-auto">
             <div className="mt-8 flex flex-col">
               <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -75,13 +75,13 @@ const PostManagement = () => {
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
+                            className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900 hidden sm:table-cell"
                           >
                             تاریخ
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
+                            className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900 hidden sm:table-cell"
                           >
                             وضعیت
                           </th>
@@ -117,10 +117,10 @@ const PostManagement = () => {
                                   ? `${file.title.slice(0, titleLength)}...`
                                   : file.title}
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500 hidden sm:table-cell">
                                 {exportDate(file.date)}
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500 hidden sm:table-cell">
                                 {file.verify ? "فعال" : "غیرفعال"}
                               </td>
                               <td className="whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-6">

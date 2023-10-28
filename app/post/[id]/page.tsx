@@ -81,7 +81,7 @@ const pageId = ({ params }: any) => {
           </div>
           <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             <Form>
-              <div className=" w-5/12 mx-auto my-8">
+              <div className="w-10/12 sm:w-7/12 lg:w-5/12 mx-auto my-8">
                 <div>
                   <Field
                     type="text"
@@ -116,7 +116,7 @@ const pageId = ({ params }: any) => {
             <div className="text-lg text-center font-bold">بازخورد شما</div>
             {files.comments.filter((file: any) => file.verify !== false)
               .length !== 0 ? (
-              <div className="w-9/12 mx-auto">
+              <div className="w-10/12 sm:w-9/12 mx-auto">
                 {files.comments
                   .sort((a: any, b: any) => a.id - b.id)
                   .filter((file: any) => file.verify !== false)
@@ -136,7 +136,7 @@ const pageId = ({ params }: any) => {
                       </div>
                       {msg.answer && (
                         <div className="flex justify-end w-full mt-3">
-                          <div className="bg-gray-200 w-[95%] h-fit rounded-xl mb-2 ml-3">
+                          <div className="bg-gray-200 w-[95%] h-fit rounded-xl mb-2 mx-3 sm:ml-3">
                             <div className="text-sm font-bold mx-3 mt-3">
                               پاسخ:
                             </div>
@@ -150,7 +150,7 @@ const pageId = ({ params }: any) => {
                   ))}
               </div>
             ) : (
-              <div className="bg-gray-200 rounded-xl w-2/6 h-fit py-3 mx-auto text-center my-8">
+              <div className="bg-gray-200 rounded-xl w-4/6 sm:w-2/6 h-fit py-3 mx-auto text-center my-8">
                 بازخوردی ثبت نشده است
               </div>
             )}

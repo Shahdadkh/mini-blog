@@ -50,7 +50,7 @@ const NewPost = () => {
   };
 
   return (
-    <div className="w-3/6 mx-auto mt-20">
+    <div className="w-5/6 sm:w-4/6 lg:w-3/6 mx-auto mt-20">
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form>
           <div className=" w-11/12 mx-auto my-5">

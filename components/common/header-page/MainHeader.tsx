@@ -9,8 +9,13 @@ const MainHeader = () => {
   ];
 
   return (
-    <div className="border border-transparent bg-white w-11/12 h-14 mx-auto">
-      <div className="flex justify-between mt-3">
+    <div className="border border-transparent bg-white w-11/12 h-14 mx-auto mb-10 sm:mb-0">
+      <div
+        className={`${antro.className} font-antro text-2xl font-bold text-center mt-5 sm:hidden`}
+      >
+        My Gray Life
+      </div>
+      <div className="flex justify-center sm:justify-between mt-3">
         <ul className="flex gap-16">
           {menu.map((item, i) => (
             <li key={i}>
@@ -20,7 +25,9 @@ const MainHeader = () => {
             </li>
           ))}
         </ul>
-        <div className={`${antro.className} font-antro text-2xl font-bold`}>
+        <div
+          className={`${antro.className} font-antro text-2xl font-bold hidden sm:block`}
+        >
           My Gray Life
         </div>
       </div>

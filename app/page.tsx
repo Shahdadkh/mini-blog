@@ -48,14 +48,16 @@ export default function Home() {
             </Link>
           ))}
       </div>
-      {files.length > pageSize && (
-        <Pagination
-          totalPageSize={files.length}
-          pageSize={pageSize}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-        />
-      )}
+      <div className="my-5">
+        {files.length > pageSize && (
+          <Pagination
+            totalPageSize={files.length}
+            pageSize={pageSize}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
+        )}
+      </div>
     </main>
   );
 }

@@ -11,15 +11,19 @@ const aboutus = () => {
     about:
       "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
     links: [
-      { icon: FaSquareFacebook, src: "/", active: true },
-      { icon: FaXTwitter, src: "/", active: true },
-      { icon: FaTelegram, src: "/", active: true },
-      { icon: FaInstagram, src: "/", active: true },
+      {
+        icon: FaSquareFacebook,
+        src: "https://facebook.com/",
+        active: true,
+      },
+      { icon: FaXTwitter, src: "https://twitter.com/", active: true },
+      { icon: FaTelegram, src: "https://t.me/", active: true },
+      { icon: FaInstagram, src: "https://instagram.com/", active: true },
     ],
   };
 
   return (
-    <div className="rounded-xl w-8/12 mx-auto mt-20 py-20 shadow-custom-shadow">
+    <div className="rounded-xl w-11/12 sm:w-8/12 mx-auto mt-20 py-10 sm:py-20 shadow-custom-shadow">
       <div className=" w-10/12 h-fit mx-auto text-sm text-justify font-normal fontcolor1">
         {linkList.about}
       </div>
