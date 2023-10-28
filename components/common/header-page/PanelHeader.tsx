@@ -9,7 +9,7 @@ import { HiOutlineX, HiOutlineViewList } from "react-icons/hi";
 const PanelHeader = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const menu = [
     { name: "دیدن سایت", href: "/" },
