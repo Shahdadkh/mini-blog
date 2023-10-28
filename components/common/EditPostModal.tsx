@@ -95,6 +95,24 @@ const EditPostModal = ({
                   <div className="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                     <div className="bg-white px-4 pt-5 pb-1 sm:p-4 sm:pb-1">
                       <div>
+                        <div className="flex justify-start sm:hidden">
+                          <button
+                            type="button"
+                            onClick={() => setToggle(!toggle)}
+                            className={`${
+                              toggle ? "bg-gray-600" : "bg-gray-300"
+                            } relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-0`}
+                            role="switch"
+                            aria-checked="false"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className={`${
+                                toggle ? "-translate-x-5" : "translate-x-0"
+                              } pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200`}
+                            ></span>
+                          </button>
+                        </div>
                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
                           <div>
                             <Field
@@ -117,27 +135,29 @@ const EditPostModal = ({
                       </div>
                     </div>
                     <div className="flex justify-between items-center px-4">
-                      <button
-                        type="button"
-                        onClick={() => setToggle(!toggle)}
-                        className={`${
-                          toggle ? "bg-gray-600" : "bg-gray-300"
-                        } relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-0`}
-                        role="switch"
-                        aria-checked="false"
-                      >
-                        <span
-                          aria-hidden="true"
+                      <div className="hidden sm:block">
+                        <button
+                          type="button"
+                          onClick={() => setToggle(!toggle)}
                           className={`${
-                            toggle ? "-translate-x-5" : "translate-x-0"
-                          } pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200`}
-                        ></span>
-                      </button>
+                            toggle ? "bg-gray-600" : "bg-gray-300"
+                          } relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-0`}
+                          role="switch"
+                          aria-checked="false"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className={`${
+                              toggle ? "-translate-x-5" : "translate-x-0"
+                            } pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200`}
+                          ></span>
+                        </button>
+                      </div>
                       <div className="bg-gray-50 py-3">
                         <button
                           type="button"
                           onClick={() => setOpen(false)}
-                          className="mt-3 w-full inline-flex justify-center rounded-full border border-gray-300 shadow-sm px-8 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-0 sm:mt-0 sm:ml-2 sm:w-auto sm:text-sm"
+                          className="my-1 w-full inline-flex justify-center rounded-full border border-gray-300 shadow-sm px-8 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-0 sm:mt-0 sm:ml-2 sm:w-auto sm:text-sm"
                         >
                           انصراف
                         </button>

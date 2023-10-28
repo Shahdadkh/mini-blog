@@ -103,7 +103,7 @@ const Inbox = () => {
                     : file.post.title
                 }`}
               </Link>
-              <div className="text-xs font-semibold">
+              <div className="text-xs font-semibold truncate">
                 {exportDateAndTime(file.date)}
               </div>
             </div>
