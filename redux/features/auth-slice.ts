@@ -25,7 +25,7 @@ export const auth = createSlice({
     logOut: () => {
       return initialState;
     },
-    logIn: (state, action: PayloadAction<string>) => {
+    logIn: (state, action: PayloadAction<AuthState>) => {
       return {
         auth: {
           id: action.payload?.id,
