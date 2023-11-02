@@ -1,15 +1,14 @@
 "use client";
 import Link from "next/link";
-import { logOut } from "@/redux/features/auth-slice";
-import { useDispatch } from "react-redux";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { HiOutlineX, HiOutlineViewList } from "react-icons/hi";
+import ExitModal from "../ExitModal";
 
 const PanelHeader = () => {
-  const dispatch = useDispatch();
-  const router = useRouter();
   const [openMenu, setOpenMenu] = useState(false);
+
+  //ExitModal
+  const [showExitModal, setShowExitModal] = useState(false);
 
   const menu = [
     { name: "دیدن سایت", href: "/" },
@@ -20,12 +19,11 @@ const PanelHeader = () => {
   ];
 
   const handleExit = () => {
-    dispatch(logOut());
-    router.push("/");
+    setShowExitModal(true);
   };
 
   return (
-    <div className="border border-transparent bg-white w-11/12 h-14 mx-auto">
+    <div className="border border-transparent w-11/12 h-14 mx-auto">
       <div className="flex justify-between mt-3 px-3">
         <HiOutlineViewList
           onClick={() => setOpenMenu(true)}
@@ -84,6 +82,10 @@ const PanelHeader = () => {
           خروج
         </div>
       </div>
+      <ExitModal
+        showExitModal={showExitModal}
+        setShowExitModal={setShowExitModal}
+      />
     </div>
   );
 };

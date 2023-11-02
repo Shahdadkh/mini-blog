@@ -90,7 +90,7 @@ const Inbox = () => {
         .map((file: any, i) => (
           <div
             key={i}
-            className="w-11/12 h-fit py-2 sm:py-4 rounded-xl mx-auto mt-5 shadow-custom-shadow"
+            className="w-11/12 h-fit py-2 sm:py-4 bg-white rounded-xl mx-auto mt-5 shadow-custom-shadow"
           >
             <div className="flex justify-between mx-4">
               <Link

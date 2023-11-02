@@ -69,7 +69,7 @@ const NewPost = () => {
                 rows="8"
                 name="text"
                 required
-                className="border border-transparent block w-full mt-6 py-2 px-3 rounded-xl shadow-custom-shadow outline-none fontcolor1"
+                className="border border-transparent block w-full mt-4 py-2 px-3 rounded-xl shadow-custom-shadow outline-none fontcolor1"
                 placeholder="متن خود را وارد کنید"
               />
             </div>

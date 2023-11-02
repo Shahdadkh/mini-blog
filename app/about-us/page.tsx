@@ -23,8 +23,8 @@ const aboutus = () => {
   };
 
   return (
-    <div className="rounded-xl w-11/12 sm:w-8/12 mx-auto mt-20 py-10 sm:py-20 shadow-custom-shadow">
-      <div className=" w-10/12 h-fit mx-auto text-sm text-justify font-normal fontcolor1">
+    <div className="bg-white rounded-xl w-11/12 sm:w-8/12 mx-auto mt-20 py-10 sm:py-20 shadow-custom-shadow">
+      <div className="w-10/12 h-fit mx-auto text-sm text-justify font-normal fontcolor1">
         {linkList.about}
       </div>
       <div className="flex justify-center gap-2 flex-row-reverse mt-10">

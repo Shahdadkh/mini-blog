@@ -67,7 +67,7 @@ const pageId = ({ params }: any) => {
       {files !== null && files.verify === true && (
         <div>
           <div>
-            <div className="border border-transparent w-10/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow">
+            <div className="border border-transparent bg-white w-10/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow">
               <div className="text-base font-bold mt-10 mx-6 text-center">
                 {files.title}
               </div>
@@ -97,7 +97,7 @@ const pageId = ({ params }: any) => {
                     rows="5"
                     name="text"
                     required
-                    className="border border-transparent block w-full mt-6 py-2 px-3 rounded-xl shadow-custom-shadow outline-none fontcolor1"
+                    className="border border-transparent block w-full mt-3 py-2 px-3 rounded-xl shadow-custom-shadow outline-none fontcolor1"
                     placeholder="پیام بگذارید"
                   />
                 </div>
@@ -116,7 +116,7 @@ const pageId = ({ params }: any) => {
             <div className="text-lg text-center font-bold">بازخورد شما</div>
             {files.comments.filter((file: any) => file.verify !== false)
               .length !== 0 ? (
-              <div className="w-10/12 sm:w-9/12 mx-auto">
+              <div className="w-10/12 sm:w-9/12 mx-auto bg-white rounded-xl">
                 {files.comments
                   .sort((a: any, b: any) => a.id - b.id)
                   .filter((file: any) => file.verify !== false)

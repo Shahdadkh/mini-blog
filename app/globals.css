@@ -6,6 +6,10 @@ html {
   direction: rtl;
 }
 
+body {
+  background-color: rgb(243, 244, 246);
+}
+
 .fontcolor1 {
   color: #696969;
 }

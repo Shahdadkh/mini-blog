@@ -9,7 +9,7 @@ const MainHeader = () => {
   ];
 
   return (
-    <div className="border border-transparent bg-white w-11/12 h-14 mx-auto mb-10 sm:mb-0">
+    <div className="border border-transparent w-11/12 h-14 mx-auto mb-16 sm:mb-0">
       <div
         className={`${antro.className} font-antro text-2xl font-bold text-center mt-5 sm:hidden`}
       >
