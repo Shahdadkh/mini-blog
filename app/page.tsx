@@ -3,7 +3,7 @@ import Link from "next/link";
 import Pagination from "@/components/common/Pagination";
 import { useState, useEffect } from "react";
 import { exportDate } from "@/components/utils/utils.utils";
-import LandingSkeleton from "@/components/common/LandingSkeleton";
+import LandingSkeleton from "@/components/common/skeleton/LandingSkeleton";
 
 export default function Home() {
   const textLength = 500;

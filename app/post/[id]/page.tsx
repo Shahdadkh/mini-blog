@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { exportDate, exportDateAndTime } from "@/components/utils/utils.utils";
+import PostSkeleton from "@/components/common/skeleton/PostSkeleton";
 
 interface typeValue {
   name: string;
@@ -64,7 +65,7 @@ const pageId = ({ params }: any) => {
 
   return (
     <div>
-      {files !== null && files.verify === true && (
+      {files !== null && files.verify === true ? (
         <div>
           <div>
             <div className="border border-transparent bg-white w-10/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow">
@@ -156,6 +157,8 @@ const pageId = ({ params }: any) => {
             )}
           </div>
         </div>
+      ) : (
+        <PostSkeleton />
       )}
     </div>
   );
