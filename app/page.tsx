@@ -3,6 +3,7 @@ import Link from "next/link";
 import Pagination from "@/components/common/Pagination";
 import { useState, useEffect } from "react";
 import { exportDate } from "@/components/utils/utils.utils";
+import LandingSkeleton from "@/components/common/LandingSkeleton";
 
 export default function Home() {
   const textLength = 500;
@@ -26,27 +27,31 @@ export default function Home() {
   return (
     <main>
       <div className="my-4">
-        {files
-          .sort((a: any, b: any) => b.id - a.id)
-          .filter((file: any) => file.verify !== false)
-          .slice(StartCourse, EndCourse)
-          .map((text: any) => (
-            <Link key={text.id} href={`/post/${text.id}`}>
-              <div className="border border-transparent bg-white w-10/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow">
-                <div className="text-base font-bold mt-4 mx-6">
-                  {text.title}
+        {files.length > 0 ? (
+          files
+            .sort((a: any, b: any) => b.id - a.id)
+            .filter((file: any) => file.verify !== false)
+            .slice(StartCourse, EndCourse)
+            .map((text: any) => (
+              <Link key={text.id} href={`/post/${text.id}`}>
+                <div className="border border-transparent bg-white w-10/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow">
+                  <div className="text-base font-bold mt-4 mx-6">
+                    {text.title}
+                  </div>
+                  <div className="text-sm font-normal mr-6 mt-1 fontcolor1">
+                    {exportDate(text.date)}
+                  </div>
+                  <div className="text-sm font-light text-justify mt-2 mb-4 mx-6 fontcolor1">
+                    {text.text.length > textLength
+                      ? `${text.text.slice(0, textLength)}...`
+                      : text.text}
+                  </div>
                 </div>
-                <div className="text-sm font-normal mr-6 mt-1 fontcolor1">
-                  {exportDate(text.date)}
-                </div>
-                <div className="text-sm font-light text-justify mt-2 mb-4 mx-6 fontcolor1">
-                  {text.text.length > textLength
-                    ? `${text.text.slice(0, textLength)}...`
-                    : text.text}
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))
+        ) : (
+          <LandingSkeleton />
+        )}
       </div>
       <div className="my-5">
         {files.length > pageSize && (
