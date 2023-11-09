@@ -35,15 +35,15 @@ export default function Home() {
             .slice(StartCourse, EndCourse)
             .map((text: any) => (
               <AnimatePresence key={text.id}>
-                <Link href={`/post/${text.id}`}>
-                  <motion.div
-                    whileHover={{ scale: 1.01 }}
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className="border border-transparent bg-white w-10/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow"
-                  >
+                <motion.div
+                  whileHover={{ scale: 1.01 }}
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  className="border border-transparent bg-white w-10/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow"
+                >
+                  <Link href={`/post/${text.id}`}>
                     <div className="text-base font-bold mt-4 mx-6">
                       {text.title}
                     </div>
@@ -55,8 +55,8 @@ export default function Home() {
                         ? `${text.text.slice(0, textLength)}...`
                         : text.text}
                     </div>
-                  </motion.div>
-                </Link>
+                  </Link>
+                </motion.div>
               </AnimatePresence>
             ))
         ) : (
