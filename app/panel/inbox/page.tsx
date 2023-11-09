@@ -8,6 +8,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Inbox = () => {
   const textLength = 20;
@@ -83,61 +84,71 @@ const Inbox = () => {
   };
 
   return (
-    <div className="mb-4">
-      {files
-        .sort((a: any, b: any) => b.id - a.id)
-        .slice(StartCourse, EndCourse)
-        .map((file: any, i) => (
-          <div
-            key={i}
-            className="w-11/12 h-fit py-2 sm:py-4 bg-white rounded-xl mx-auto mt-5 shadow-custom-shadow"
-          >
-            <div className="flex justify-between mx-4">
-              <Link
-                href={`/post/${file.postId}`}
-                className="text-sm font-semibold"
+    <div>
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0, y: -5 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -5 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          className="mb-4"
+        >
+          {files
+            .sort((a: any, b: any) => b.id - a.id)
+            .slice(StartCourse, EndCourse)
+            .map((file: any, i) => (
+              <div
+                key={i}
+                className="w-11/12 h-fit py-2 sm:py-4 bg-white rounded-xl mx-auto mt-5 shadow-custom-shadow"
               >
-                {`${file.name} در پست ${
-                  file.post.title.length > textLength
-                    ? `${file.post.title.slice(0, textLength)}...`
-                    : file.post.title
-                }`}
-              </Link>
-              <div className="text-xs font-semibold truncate">
-                {exportDateAndTime(file.date)}
+                <div className="flex justify-between mx-4">
+                  <Link
+                    href={`/post/${file.postId}`}
+                    className="text-sm font-semibold"
+                  >
+                    {`${file.name} در پست ${
+                      file.post.title.length > textLength
+                        ? `${file.post.title.slice(0, textLength)}...`
+                        : file.post.title
+                    }`}
+                  </Link>
+                  <div className="text-xs font-semibold truncate">
+                    {exportDateAndTime(file.date)}
+                  </div>
+                </div>
+                <div className="text-sm fontcolor1 mx-4">{file.text}</div>
+                <div className="mt-4">
+                  <button
+                    onClick={() => handleAnswer({ value: true, post: file })}
+                    className="bg-gray-500 hover:bg-gray-600 text-white font-normal text-sm py-1.5 px-8 mr-3 ml-1 mt-1 rounded-full"
+                  >
+                    پاسخ
+                  </button>
+                  {file.verify ? (
+                    <button
+                      onClick={() => handleDeactive(file.id)}
+                      className="bg-white fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
+                    >
+                      غیرفعال
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleActive(file.id)}
+                      className="bg-gray-200 fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
+                    >
+                      فعال
+                    </button>
+                  )}
+                </div>
+                {file.answer && (
+                  <div className="w-[98%] h-fit text-sm rounded-xl mt-2 mx-auto p-3 bg-gray-200">
+                    {file.answer}
+                  </div>
+                )}
               </div>
-            </div>
-            <div className="text-sm fontcolor1 mx-4">{file.text}</div>
-            <div className="mt-4">
-              <button
-                onClick={() => handleAnswer({ value: true, post: file })}
-                className="bg-gray-500 hover:bg-gray-600 text-white font-normal text-sm py-1.5 px-8 mr-3 ml-1 mt-1 rounded-full"
-              >
-                پاسخ
-              </button>
-              {file.verify ? (
-                <button
-                  onClick={() => handleDeactive(file.id)}
-                  className="bg-white fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
-                >
-                  غیرفعال
-                </button>
-              ) : (
-                <button
-                  onClick={() => handleActive(file.id)}
-                  className="bg-gray-200 fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
-                >
-                  فعال
-                </button>
-              )}
-            </div>
-            {file.answer && (
-              <div className="w-[98%] h-fit text-sm rounded-xl mt-2 mx-auto p-3 bg-gray-200">
-                {file.answer}
-              </div>
-            )}
-          </div>
-        ))}
+            ))}
+        </motion.div>
+      </AnimatePresence>
       <DeactiveModal
         showModal={showModal}
         setShowModal={setShowModal}
