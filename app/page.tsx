@@ -48,7 +48,7 @@ export default function Home() {
                       {text.title}
                     </div>
                     <div className="text-sm font-normal mr-6 mt-1 fontcolor1">
-                      {exportDate(text.date)}
+                      {text.user.username} - {exportDate(text.date)}
                     </div>
                     <div className="text-sm font-light text-justify mt-2 mb-4 mx-6 fontcolor1">
                       {text.text.length > textLength

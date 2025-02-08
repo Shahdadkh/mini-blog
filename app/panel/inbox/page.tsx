@@ -37,9 +37,12 @@ const Inbox = () => {
     fetch(`${process.env.url}/comments`)
       .then((res) => res.json())
       .then((data) => {
-        const newData = data.filter(
-          (comment: any) => comment.post.userId === auth.id
-        );
+        let newData = data;
+        if (auth.role === "user") {
+          newData = data.filter(
+            (comment: any) => comment.post.userId === auth.id
+          );
+        }
         setFiles(newData);
       });
   };
