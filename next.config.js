@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    url: "https://mini-blog-api-production.up.railway.app/api",
+    url: "http://localhost:8000/api",
   },
 };
 

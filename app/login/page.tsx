@@ -7,6 +7,7 @@ import { logIn } from "@/redux/features/auth-slice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface typeValue {
   username: string;
@@ -41,6 +42,7 @@ const login = () => {
             toast.error("نام کاربری یا رمز عبور اشتباه است");
           } else {
             dispatch(logIn(data));
+            toast.success("با موفقیت وارد شدید.");
             router.push("/");
           }
         });
@@ -83,6 +85,12 @@ const login = () => {
             >
               ورود
             </button>
+            <Link
+              href="/register"
+              className="flex justify-center mt-2 text-gray-500"
+            >
+              برای ثبت‌نام کلیک کنید.
+            </Link>
           </div>
         </Form>
       </Formik>
