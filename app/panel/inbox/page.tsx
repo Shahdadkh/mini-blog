@@ -37,7 +37,10 @@ const Inbox = () => {
     fetch(`${process.env.url}/comments`)
       .then((res) => res.json())
       .then((data) => {
-        setFiles(data);
+        const newData = data.filter(
+          (comment: any) => comment.post.userId === auth.id
+        );
+        setFiles(newData);
       });
   };
 
@@ -129,14 +132,14 @@ const Inbox = () => {
                       onClick={() => handleDeactive(file.id)}
                       className="bg-white fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
                     >
-                      غیرفعال
+                      عدم نمایش
                     </button>
                   ) : (
                     <button
                       onClick={() => handleActive(file.id)}
                       className="bg-gray-200 fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
                     >
-                      فعال
+                      نمایش
                     </button>
                   )}
                 </div>

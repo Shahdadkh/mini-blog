@@ -22,7 +22,8 @@ const PostManagement = () => {
     fetch(`${process.env.url}/posts`)
       .then((res) => res.json())
       .then((data) => {
-        setFiles(data);
+        const newData = data.filter((post: any) => post.userId === auth.id);
+        setFiles(newData);
       });
   };
 

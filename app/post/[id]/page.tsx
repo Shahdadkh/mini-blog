@@ -37,7 +37,7 @@ const pageId = ({ params }: any) => {
     text: "",
   };
 
-  const handleSubmit = (value: any) => {
+  const handleSubmit = (value: any, { resetForm }: any) => {
     const data = {
       postId: params.id,
       ...value,
@@ -55,6 +55,7 @@ const pageId = ({ params }: any) => {
         .then((data) => {
           if (data.status === "success") {
             toast.success(data.message);
+            resetForm();
           } else {
             toast.error("خطا در ارسال اطلاعات");
           }
@@ -88,37 +89,39 @@ const pageId = ({ params }: any) => {
               </div>
             </div>
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-              <Form>
-                <div className="w-10/12 sm:w-7/12 lg:w-5/12 mx-auto my-8">
-                  <div>
-                    <Field
-                      type="text"
-                      name="name"
-                      required
-                      className="border border-transparent block w-full  py-2 px-3 rounded-xl shadow-custom-shadow outline-none fontcolor1"
-                      placeholder="نام شما"
-                    />
+              {({ resetForm }) => (
+                <Form>
+                  <div className="w-10/12 sm:w-7/12 lg:w-5/12 mx-auto my-8">
+                    <div>
+                      <Field
+                        type="text"
+                        name="name"
+                        required
+                        className="border border-transparent block w-full  py-2 px-3 rounded-xl shadow-custom-shadow outline-none fontcolor1"
+                        placeholder="نام شما"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <Field
+                        as="textarea"
+                        rows="5"
+                        name="text"
+                        required
+                        className="border border-transparent block w-full mt-3 py-2 px-3 rounded-xl shadow-custom-shadow outline-none fontcolor1"
+                        placeholder="پیام بگذارید"
+                      />
+                    </div>
+                    <div className="flex justify-end w-full">
+                      <button
+                        type="submit"
+                        className="bg-gray-500 hover:bg-gray-600 text-white font-medium text-base py-1.5 px-8 rounded-full"
+                      >
+                        ارسال
+                      </button>
+                    </div>
                   </div>
-                  <div className="mb-3">
-                    <Field
-                      as="textarea"
-                      rows="5"
-                      name="text"
-                      required
-                      className="border border-transparent block w-full mt-3 py-2 px-3 rounded-xl shadow-custom-shadow outline-none fontcolor1"
-                      placeholder="پیام بگذارید"
-                    />
-                  </div>
-                  <div className="flex justify-end w-full">
-                    <button
-                      type="submit"
-                      className="bg-gray-500 hover:bg-gray-600 text-white font-medium text-base py-1.5 px-8 rounded-full"
-                    >
-                      ارسال
-                    </button>
-                  </div>
-                </div>
-              </Form>
+                </Form>
+              )}
             </Formik>
             <div className="my-4">
               <div className="text-lg text-center font-bold">بازخورد شما</div>

@@ -39,7 +39,7 @@ const login = () => {
             data.message === "Wrong password." ||
             data.message === "User not Found"
           ) {
-            toast.error("نام کاربری یا رمز عبور اشتباه است");
+            toast.error("نام کاربری یا رمز عبور اشتباه است.");
           } else {
             dispatch(logIn(data));
             toast.success("با موفقیت وارد شدید.");
