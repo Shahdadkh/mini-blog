@@ -43,12 +43,12 @@ export default function Home() {
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   className="border border-transparent bg-white w-10/12 mt-3 h-fit mx-auto rounded-xl shadow-custom-shadow"
                 >
-                  <Link href={`/post/${text.id}`}>
+                  <Link href={`/post/${text.uuid}`}>
                     <div className="text-base font-bold mt-4 mx-6">
                       {text.title}
                     </div>
                     <div className="text-sm font-normal mr-6 mt-1 fontcolor1">
-                      {text.user.username} - {exportDate(text.date)}
+                      {text.user.displayName} - {exportDate(text.date)}
                     </div>
                     <div className="text-sm font-light text-justify mt-2 mb-4 mx-6 fontcolor1">
                       {text.text.length > textLength

@@ -109,7 +109,7 @@ const Inbox = () => {
               >
                 <div className="flex justify-between mx-4">
                   <Link
-                    href={`/post/${file.postId}`}
+                    href={`/post/${file.post.uuid}`}
                     className="text-sm font-semibold"
                   >
                     {`${file.name} در پست ${

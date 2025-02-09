@@ -42,7 +42,7 @@ const EditPostModal = ({
     };
 
     try {
-      fetch(`${process.env.url}/posts/${showPosts.id}`, {
+      fetch(`${process.env.url}/posts/${showPosts.uuid}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

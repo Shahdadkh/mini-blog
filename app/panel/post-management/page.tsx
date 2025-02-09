@@ -130,7 +130,10 @@ const PostManagement = () => {
                               <td className="whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-6">
                                 <MdDelete
                                   onClick={() =>
-                                    handleDelete({ value: true, post: file.id })
+                                    handleDelete({
+                                      value: true,
+                                      post: file.uuid,
+                                    })
                                   }
                                   className="w-6 h-6 fontcolor1 mx-auto cursor-pointer"
                                 />
@@ -144,7 +147,7 @@ const PostManagement = () => {
                                 />
                               </td>
                               <td className="whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-6">
-                                <Link href={`/post/${file.id}`}>
+                                <Link href={`/post/${file.uuid}`}>
                                   <MdRemoveRedEye className="w-6 h-6 fontcolor1 mx-auto cursor-pointer" />
                                 </Link>
                               </td>
