@@ -82,8 +82,10 @@ const pageId = ({ params }: any) => {
                   {files.title}
                 </div>
                 <div className="text-sm font-normal mt-1 text-center fontcolor1">
-                  <Link href="/">{files.user.displayName}</Link> -{" "}
-                  {exportDate(files.date)}
+                  <Link href={`/profile/${files.user.uuid}`}>
+                    {files.user.displayName}
+                  </Link>{" "}
+                  - {exportDate(files.date)}
                 </div>
                 <div className="text-sm font-light text-justify mt-5 mb-10 mx-6 fontcolor1">
                   {files.text}

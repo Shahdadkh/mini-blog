@@ -3,15 +3,18 @@ import Link from "next/link";
 import { useState } from "react";
 import { HiOutlineX, HiOutlineViewList } from "react-icons/hi";
 import ExitModal from "../ExitModal";
+import { useAppSelector } from "@/redux/store";
+import { HiHome } from "react-icons/hi";
 
 const PanelHeader = () => {
+  const auth = useAppSelector((state) => state.authReducer.auth);
   const [openMenu, setOpenMenu] = useState(false);
 
   //ExitModal
   const [showExitModal, setShowExitModal] = useState(false);
 
   const menu = [
-    { name: "دیدن سایت", href: "/" },
+    { name: "دیدن پروفایل", href: `/profile/${auth.uuid}` },
     { name: "پست جدید", href: "/panel/new-post" },
     { name: "مدیریت پست‌ها", href: "/panel/post-management" },
     { name: "صندوق پیام", href: "/panel/inbox" },
@@ -45,6 +48,19 @@ const PanelHeader = () => {
               </div>
               <div>
                 <ul>
+                  <li className="mb-1">
+                    <div
+                      className={`flex items-center w-full hover:bg-gray-100`}
+                    >
+                      <Link
+                        className="block p-4 text-sm font-semibold rounded"
+                        onClick={() => setOpenMenu(false)}
+                        href="/"
+                      >
+                        دیدن سایت
+                      </Link>
+                    </div>
+                  </li>
                   {menu.map((menu, i) => (
                     <li key={i} className="mb-1">
                       <div
@@ -66,7 +82,10 @@ const PanelHeader = () => {
           </div>
         ) : null}
         {/* End Hamburger Menu */}
-        <ul className="hidden sm:flex gap-16">
+        <ul className="hidden sm:flex gap-14">
+          <Link href="/">
+            <HiHome className="w-6 h-6" />
+          </Link>
           {menu.map((item, i) => (
             <li key={i}>
               <Link href={item.href} className="text-base font-medium">

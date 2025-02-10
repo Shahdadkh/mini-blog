@@ -6,6 +6,7 @@ type initialState = {
 
 type AuthState = {
   id: string;
+  uuid: string;
   username: string;
   role: string;
   access_token: string;
@@ -14,6 +15,7 @@ type AuthState = {
 const initialState = {
   auth: {
     id: "",
+    uuid: "",
     username: "",
     role: "",
     access_token: "",
@@ -31,6 +33,7 @@ export const auth = createSlice({
       return {
         auth: {
           id: action.payload?.id,
+          uuid: action.payload?.uuid,
           username: action.payload?.username,
           role: action.payload?.role,
           access_token: action.payload?.access_token,

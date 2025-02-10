@@ -1,13 +1,7 @@
 "use client";
 import { Formik, Form, Field } from "formik";
-import { HiEye, HiEyeOff } from "react-icons/hi";
-import { useState } from "react";
 import { toast } from "react-toastify";
-import { logIn } from "@/redux/features/auth-slice";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 interface typeValue {
   username: string;
@@ -17,7 +11,6 @@ interface typeValue {
 
 const login = () => {
   const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>();
 
   const initialValues: typeValue = {
     username: "",
