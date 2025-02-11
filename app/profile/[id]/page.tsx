@@ -15,8 +15,9 @@ import {
 export default function profile({ params }: any) {
   const textLength = 500;
   const [files, setFiles] = useState<any[]>([]);
+  const [dataUser, setDataUser] = useState<any>("");
 
-  useEffect(() => {
+  const getPost = () => {
     fetch(`${process.env.url}/posts`)
       .then((res) => res.json())
       .then((data) => {
@@ -25,6 +26,19 @@ export default function profile({ params }: any) {
         );
         setFiles(newData);
       });
+  };
+
+  const getData = () => {
+    fetch(`${process.env.url}/users/${params.id}`)
+      .then((res) => res.json())
+      .then((data: any) => {
+        setDataUser(data);
+        getPost();
+      });
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   //Pagination
@@ -38,39 +52,37 @@ export default function profile({ params }: any) {
     <main>
       <div className="my-10">
         <div>
-          {files.length > 0 ? (
+          {dataUser.length !== "" ? (
             <div className="bg-white rounded-xl h-fit w-11/12 sm:w-8/12 mx-auto shadow-custom-shadow border border-transparent">
               <div className="relative flex justify-center h-24">
                 <div className="w-28 h-28 absolute -top-8  rounded-xl overflow-hidden">
-                  <div
-                    dangerouslySetInnerHTML={{ __html: files[0].user.imgUrl }}
-                  />
+                  <div dangerouslySetInnerHTML={{ __html: dataUser.imgUrl }} />
                 </div>
               </div>
               <div className="w-10/12 mx-auto text-center text-xl font-bold">
-                {files[0].user.displayName}
+                {dataUser.displayName}
               </div>
               <div className="w-10/12 mx-auto text-sm mt-2 text-justify font-normal fontcolor1">
-                {files[0].user.aboutMe}
+                {dataUser.aboutMe}
               </div>
               <div className="flex justify-center gap-2 flex-row-reverse my-8">
-                {files[0].user.facebook ? (
-                  <Link href={files[0].user.facebook}>
+                {dataUser.facebook ? (
+                  <Link href={dataUser.facebook}>
                     <FaSquareFacebook className="w-6 h-6" />
                   </Link>
                 ) : null}
-                {files[0].user.twitter ? (
-                  <Link href={files[0].user.twitter}>
+                {dataUser.twitter ? (
+                  <Link href={dataUser.twitter}>
                     <FaXTwitter className="w-6 h-6" />
                   </Link>
                 ) : null}
-                {files[0].user.telegram ? (
-                  <Link href={files[0].user.telegram}>
+                {dataUser.telegram ? (
+                  <Link href={dataUser.telegram}>
                     <FaTelegram className="w-6 h-6" />
                   </Link>
                 ) : null}
-                {files[0].user?.instagram ? (
-                  <Link href={files[0].user.instagram}>
+                {dataUser.instagram ? (
+                  <Link href={dataUser.instagram}>
                     <FaInstagram className="w-6 h-6" />
                   </Link>
                 ) : null}

@@ -10,7 +10,7 @@ interface typeValue {
   repeatNewPassword: string;
 }
 
-const ChangePassword = () => {
+const ProfileSetting = () => {
   const auth = useAppSelector((state) => state.authReducer.auth);
 
   if (auth.access_token === "") {
@@ -97,4 +97,4 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+export default ProfileSetting;

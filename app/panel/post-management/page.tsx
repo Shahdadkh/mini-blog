@@ -8,6 +8,7 @@ import EditPostModal from "@/components/common/EditPostModal";
 import { exportDate } from "@/components/utils/utils.utils";
 import { redirect } from "next/navigation";
 import { useAppSelector } from "@/redux/store";
+import { HiOutlinePencilSquare } from "react-icons/hi2";
 
 const PostManagement = () => {
   const auth = useAppSelector((state) => state.authReducer.auth);
@@ -61,7 +62,7 @@ const PostManagement = () => {
 
   return (
     <div>
-      {files.length > 0 && (
+      {files.length > 0 ? (
         <div>
           <div className="px-4 sm:px-6 lg:px-8 w-11/12 sm:w-9/12 lg:w-8/12 mx-auto">
             <div className="mt-8 flex flex-col">
@@ -184,6 +185,16 @@ const PostManagement = () => {
             </div>
           )}
         </div>
+      ) : (
+        <Link
+          href="/panel/new-post"
+          className="mx-auto mt-20 relative block w-8/12 border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 cursor-pointer"
+        >
+          <HiOutlinePencilSquare className="mx-auto h-12 w-12 text-gray-400" />
+          <span className="mt-2 block text-sm font-medium text-gray-900">
+            هیچ پستی موجود نیست. برای شروع، یک پست جدید ایجاد کنید.
+          </span>
+        </Link>
       )}
     </div>
   );

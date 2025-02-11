@@ -18,7 +18,7 @@ const PanelHeader = () => {
     { name: "پست جدید", href: "/panel/new-post" },
     { name: "مدیریت پست‌ها", href: "/panel/post-management" },
     { name: "صندوق پیام", href: "/panel/inbox" },
-    { name: "تغییر رمز عبور", href: "/panel/change-password" },
+    { name: "ویرایش اطلاعات", href: "/panel/profile-setting" },
   ];
 
   const handleExit = () => {
@@ -30,7 +30,7 @@ const PanelHeader = () => {
       <div className="flex justify-between mt-3 px-3">
         <HiOutlineViewList
           onClick={() => setOpenMenu(true)}
-          className="text-3xl cursor-pointer ml-2 visible sm:hidden"
+          className="text-3xl cursor-pointer ml-2 visible md:hidden"
         />
         {/* Start Hamburger Menu */}
         {openMenu ? (
@@ -82,7 +82,7 @@ const PanelHeader = () => {
           </div>
         ) : null}
         {/* End Hamburger Menu */}
-        <ul className="hidden sm:flex gap-14">
+        <ul className="hidden md:flex gap-10">
           <Link href="/">
             <HiHome className="w-6 h-6" />
           </Link>
