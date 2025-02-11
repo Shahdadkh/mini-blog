@@ -33,7 +33,7 @@ const ProfileSetting = () => {
       toast.error("پسورد جدید باید بیشتر از 5 حرف باشد.");
     } else if (value.newPassword === value.repeatNewPassword) {
       try {
-        fetch(`${process.env.url}/users/password/${auth.id}`, {
+        fetch(`${process.env.url}/users/password/${auth.uuid}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

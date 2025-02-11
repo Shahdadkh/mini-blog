@@ -40,7 +40,7 @@ const pageId = ({ params }: any) => {
 
   const handleSubmit = (value: any, { resetForm }: any) => {
     const data = {
-      postId: params.id,
+      postUuid: params.id,
       ...value,
     };
 
@@ -133,7 +133,10 @@ const pageId = ({ params }: any) => {
                 .length !== 0 ? (
                 <div className="w-10/12 sm:w-9/12 mx-auto bg-white rounded-xl">
                   {files.comments
-                    .sort((a: any, b: any) => a.id - b.id)
+                    .sort(
+                      (a: any, b: any) =>
+                        new Date(a.date).getTime() - new Date(b.date).getTime()
+                    )
                     .filter((file: any) => file.verify !== false)
                     .map((msg: any) => (
                       <div

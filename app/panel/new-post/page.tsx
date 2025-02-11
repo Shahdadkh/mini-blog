@@ -23,7 +23,7 @@ const NewPost = () => {
 
   const handleSubmit = (value: any, { resetForm }: any) => {
     const data = {
-      userId: auth.id.toString(),
+      userUuid: auth.uuid.toString(),
       ...value,
     };
 

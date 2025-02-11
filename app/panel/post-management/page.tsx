@@ -25,7 +25,7 @@ const PostManagement = () => {
       .then((data) => {
         let newData = data;
         if (auth.role === "user") {
-          newData = data.filter((post: any) => post.userId === auth.id);
+          newData = data.filter((post: any) => post.userUuid === auth.uuid);
         }
         setFiles(newData);
       });
@@ -113,7 +113,11 @@ const PostManagement = () => {
                       </thead>
                       <tbody className="bg-white">
                         {files
-                          .sort((a: any, b: any) => b.id - a.id)
+                          .sort(
+                            (a: any, b: any) =>
+                              new Date(b.date).getTime() -
+                              new Date(a.date).getTime()
+                          )
                           .slice(StartCourse, EndCourse)
                           .map((file: any, i) => (
                             <tr key={i}>

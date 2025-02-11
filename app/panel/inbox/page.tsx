@@ -41,7 +41,7 @@ const Inbox = () => {
         let newData = data;
         if (auth.role === "user") {
           newData = data.filter(
-            (comment: any) => comment.post.userId === auth.id
+            (comment: any) => comment.post.userUuid === auth.uuid
           );
         }
         setFiles(newData);
@@ -103,7 +103,10 @@ const Inbox = () => {
               className="mb-4"
             >
               {files
-                .sort((a: any, b: any) => b.id - a.id)
+                .sort(
+                  (a: any, b: any) =>
+                    new Date(b.date).getTime() - new Date(a.date).getTime()
+                )
                 .slice(StartCourse, EndCourse)
                 .map((file: any, i) => (
                   <div
@@ -137,14 +140,14 @@ const Inbox = () => {
                       </button>
                       {file.verify ? (
                         <button
-                          onClick={() => handleDeactive(file.id)}
+                          onClick={() => handleDeactive(file.uuid)}
                           className="bg-white fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
                         >
                           عدم نمایش
                         </button>
                       ) : (
                         <button
-                          onClick={() => handleActive(file.id)}
+                          onClick={() => handleActive(file.uuid)}
                           className="bg-gray-200 fontcolor1 border border-gray-400 font-normal text-sm py-1.5 w-24 mt-1 rounded-full"
                         >
                           نمایش

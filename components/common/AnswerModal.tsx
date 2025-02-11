@@ -33,7 +33,7 @@ const AnswerModal = ({
 
   const handleSubmit = (value: any) => {
     try {
-      fetch(`${process.env.url}/comments/${showPost.id}`, {
+      fetch(`${process.env.url}/comments/${showPost.uuid}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
