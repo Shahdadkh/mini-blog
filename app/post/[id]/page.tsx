@@ -138,9 +138,9 @@ const pageId = ({ params }: any) => {
                         new Date(a.date).getTime() - new Date(b.date).getTime()
                     )
                     .filter((file: any) => file.verify !== false)
-                    .map((msg: any) => (
+                    .map((msg: any, i: any) => (
                       <div
-                        key={msg.id}
+                        key={i}
                         className=" h-fit mt-5 rounded-xl shadow-custom-shadow py-1"
                       >
                         <div className="flex justify-between mx-3 mt-3">

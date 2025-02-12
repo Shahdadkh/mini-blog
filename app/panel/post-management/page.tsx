@@ -119,7 +119,7 @@ const PostManagement = () => {
                               new Date(a.date).getTime()
                           )
                           .slice(StartCourse, EndCourse)
-                          .map((file: any, i) => (
+                          .map((file: any, i: any) => (
                             <tr key={i}>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-center text-sm font-medium text-gray-900 sm:pl-6">
                                 {file.title.length > titleLength

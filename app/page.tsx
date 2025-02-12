@@ -36,8 +36,8 @@ export default function Home() {
             )
             .filter((file: any) => file.verify !== false)
             .slice(StartCourse, EndCourse)
-            .map((text: any) => (
-              <AnimatePresence key={text.id}>
+            .map((text: any, i: any) => (
+              <AnimatePresence key={i}>
                 <motion.div
                   whileHover={{ scale: 1.01 }}
                   initial={{ opacity: 0, y: -5 }}

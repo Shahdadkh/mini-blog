@@ -108,7 +108,7 @@ const Inbox = () => {
                     new Date(b.date).getTime() - new Date(a.date).getTime()
                 )
                 .slice(StartCourse, EndCourse)
-                .map((file: any, i) => (
+                .map((file: any, i: any) => (
                   <div
                     key={i}
                     className="w-11/12 h-fit py-2 sm:py-4 bg-white rounded-xl mx-auto mt-5 shadow-custom-shadow"
