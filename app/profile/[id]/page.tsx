@@ -62,7 +62,7 @@ export default function profile({ params }: any) {
               <div className="w-10/12 mx-auto text-center text-xl font-bold">
                 {dataUser.displayName}
               </div>
-              <div className="w-10/12 mx-auto text-sm mt-2 text-justify font-normal fontcolor1">
+              <div className="w-10/12 mx-auto text-sm mt-2 text-center font-normal fontcolor1">
                 {dataUser.aboutMe}
               </div>
               <div className="flex justify-center gap-2 flex-row-reverse my-8">
